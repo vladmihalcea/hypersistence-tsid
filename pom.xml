@@ -3,7 +3,7 @@
 
 	<groupId>io.hypersistence</groupId>
 	<artifactId>tsid</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>tsid</name>
@@ -63,7 +63,7 @@
 		<url>https://github.com/vladmihalcea/tsid</url>
 		<connection>scm:git:ssh://git@github.com/vladmihalcea/tsid.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/vladmihalcea/tsid.git</developerConnection>
-		<tag>tsid-1.0.1</tag>
+		<tag>tsid-1.0.0</tag>
 	</scm>
 
 	<distributionManagement>
