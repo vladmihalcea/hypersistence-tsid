@@ -284,18 +284,18 @@ public final class Tsid implements Serializable, Comparable<Tsid> {
 	/**
 	 * Returns a fast new TSID.
 	 * <p>
-	 * This static method is a quick alternative to {@link TsidCreator#getTsid()}.
+	 * This static method is a quick alternative to {@link TsidFactory#getTsid()}.
 	 * <p>
 	 * It employs {@link AtomicInteger} to generate up to 2^22 (4,194,304) TSIDs per
 	 * millisecond. It can be useful, for example, for logging.
 	 * <p>
 	 * Security-sensitive applications that require a cryptographically secure
-	 * pseudo-random generator <b>should</b> use {@link TsidCreator#getTsid()}.
+	 * pseudo-random generator <b>should</b> use {@link TsidFactory#getTsid()}.
 	 * <p>
 	 * System property "tsidcreator.node" and environment variable
 	 * "TSIDCREATOR_NODE" are ignored by this method. Therefore, there will be
 	 * collisions if more than one process is generating TSIDs using this method. In
-	 * that case, {@link TsidCreator#getTsid()} <b>should</b> be used in conjunction
+	 * that case, {@link TsidFactory#getTsid()} <b>should</b> be used in conjunction
 	 * with that property or variable.
 	 * 
 	 * @return a TSID

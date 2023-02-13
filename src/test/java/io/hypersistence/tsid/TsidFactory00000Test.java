@@ -47,7 +47,7 @@ public abstract class TsidFactory00000Test {
 		public void run() {
 			for (int i = 0; i < loopLimit; i++) {
 				synchronized (hashSet) {
-					hashSet.add(creator.create().toLong());
+					hashSet.add(creator.generate().toLong());
 				}
 			}
 		}

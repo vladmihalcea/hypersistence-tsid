@@ -49,11 +49,11 @@ public class IncrementalTest {
                 .withClock(clock)
                 .build();
 
-        Tsid prev = factory.create();
+        Tsid prev = factory.generate();
 
         clock.decrementMillis(TEN_SECONDS - 1);
 
-        Tsid next = factory.create();
+        Tsid next = factory.generate();
 
         assertIncremental(prev, next);
     }
@@ -68,11 +68,11 @@ public class IncrementalTest {
                 .withClock(clock)
                 .build();
 
-        Tsid prev = factory.create();
+        Tsid prev = factory.generate();
 
         clock.incrementMillis(TEN_SECONDS - 1);
 
-        Tsid next = factory.create();
+        Tsid next = factory.generate();
 
         assertIncremental(prev, next);
     }
@@ -91,15 +91,15 @@ public class IncrementalTest {
 
         long last = Long.MIN_VALUE;
         for (int i=0; i < advanceTimeUpTODriftTolerance; i++) {
-            long tsid = factory.create().toLong();
+            long tsid = factory.generate().toLong();
             assertTrue(last < tsid);
             last = tsid;
         }
         
-        Tsid prev = factory.create();
+        Tsid prev = factory.generate();
         assertTrue(last < prev.toLong());
         
-        Tsid next = factory.create();
+        Tsid next = factory.generate();
         assertIncremental(prev, next);
     }
 
@@ -112,7 +112,7 @@ public class IncrementalTest {
 
         long last = 0;
         for (int i=0; i<1_000_000; i++) {
-            long tsid = factory.create().toLong();
+            long tsid = factory.generate().toLong();
             if (last != 0 && tsid < last) {
                 fail(String.format("generated TSID value is less that the previous one:\n" +
                      "   iteration: %d\n" +

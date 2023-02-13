@@ -22,7 +22,7 @@ public class TsidFactory00064Test extends TsidFactory00000Test {
 
 		long[] list = new long[LOOP_MAX];
 		for (int i = 0; i < LOOP_MAX; i++) {
-			list[i] = factory.create().toLong();
+			list[i] = factory.generate().toLong();
 		}
 
 		long endTime = System.currentTimeMillis();
@@ -44,7 +44,7 @@ public class TsidFactory00064Test extends TsidFactory00000Test {
 
 		long[] list = new long[LOOP_MAX];
 		for (int i = 0; i < LOOP_MAX; i++) {
-			list[i] = factory.create().toLong();
+			list[i] = factory.generate().toLong();
 		}
 
 		long endTime = System.currentTimeMillis();
@@ -65,7 +65,7 @@ public class TsidFactory00064Test extends TsidFactory00000Test {
 
 		String[] list = new String[LOOP_MAX];
 		for (int i = 0; i < LOOP_MAX; i++) {
-			list[i] = factory.create().toString();
+			list[i] = factory.generate().toString();
 		}
 
 		long endTime = System.currentTimeMillis();
@@ -87,7 +87,7 @@ public class TsidFactory00064Test extends TsidFactory00000Test {
 
 		String[] list = new String[LOOP_MAX];
 		for (int i = 0; i < LOOP_MAX; i++) {
-			list[i] = factory.create().toString();
+			list[i] = factory.generate().toString();
 		}
 
 		long endTime = System.currentTimeMillis();

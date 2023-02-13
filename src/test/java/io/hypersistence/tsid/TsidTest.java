@@ -131,7 +131,7 @@ public class TsidTest {
 	public void testGetUnixMilliseconds() {
 
 		long start = System.currentTimeMillis();
-		Tsid tsid = TsidCreator.getTsid1024();
+		Tsid tsid = TsidFactory.getTsid1024();
 		long middle = tsid.getUnixMilliseconds();
 		long end = System.currentTimeMillis();
 
@@ -173,7 +173,7 @@ public class TsidTest {
 	public void testGetInstant() {
 
 		Instant start = Instant.now();
-		Tsid tsid = TsidCreator.getTsid1024();
+		Tsid tsid = TsidFactory.getTsid1024();
 		Instant middle = tsid.getInstant();
 		Instant end = Instant.now();
 
@@ -309,7 +309,7 @@ public class TsidTest {
 		}
 
 		for (int i = 0; i < LOOP_MAX; i++) {
-			String string = TsidCreator.getTsid1024().toString();
+			String string = TsidFactory.getTsid1024().toString();
 			assertTrue(Tsid.isValid(string));
 		}
 	}
@@ -324,7 +324,7 @@ public class TsidTest {
 
 		for (int i = 0; i < maxLoop; i++) {
 			// can generate up to 16384 per msec
-			list[i] = TsidCreator.getTsid256();
+			list[i] = TsidFactory.getTsid256();
 		}
 
 		int n = 0;
@@ -350,7 +350,7 @@ public class TsidTest {
 
 		for (int i = 0; i < maxLoop; i++) {
 			// can generate up to 4096 per msec
-			list[i] = TsidCreator.getTsid1024();
+			list[i] = TsidFactory.getTsid1024();
 		}
 
 		int n = 0;
@@ -447,7 +447,7 @@ public class TsidTest {
 
 		for (int i = 0; i < maxLoop; i++) {
 			// can generate up to 1024 per msec
-			list[i] = TsidCreator.getTsid4096();
+			list[i] = TsidFactory.getTsid4096();
 		}
 
 		int n = 0;

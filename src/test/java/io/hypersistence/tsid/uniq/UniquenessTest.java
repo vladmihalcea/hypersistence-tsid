@@ -80,7 +80,7 @@ public class UniquenessTest {
 			for (int i = 0; i < max; i++) {
 
 				// Request a TSID
-				long tsid = factory.create().toLong();
+				long tsid = factory.generate().toLong();
 
 				if (verbose && (i % (max / 100) == 0)) {
 					// Calculate and show progress

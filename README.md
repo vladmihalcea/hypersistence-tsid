@@ -43,19 +43,19 @@ Usage
 Create a TSID:
 
 ```java
-Tsid tsid = TsidCreator.getTsid();
+Tsid tsid = TsidFactory.getTsid();
 ```
 
 Create a TSID as `long`:
 
 ```java
-long number = TsidCreator.getTsid().toLong(); // 38352658567418872
+long number = TsidFactory.getTsid().toLong(); // 38352658567418872
 ```
 
 Create a TSID as `String`:
 
 ```java
-String string = TsidCreator.getTsid().toString(); // 01226N0640J7Q
+String string = TsidFactory.getTsid().toString(); // 01226N0640J7Q
 ```
 
 The TSID generator is [thread-safe](https://en.wikipedia.org/wiki/Thread_safety).
@@ -65,14 +65,13 @@ The TSID generator is [thread-safe](https://en.wikipedia.org/wiki/Thread_safety)
 Add these lines to your `pom.xml`:
 
 ```xml
-<!-- https://search.maven.org/artifact/com.github.f4b6a3/tsid-creator -->
+<!-- https://search.maven.org/artifact/io.hypersistence -->
 <dependency>
-  <groupId>com.github.f4b6a3</groupId>
-  <artifactId>tsid-creator</artifactId>
-  <version>5.2.3</version>
+    <groupId>io.hypersistence</groupId>
+    <artifactId>tsid</artifactId>
+    <version>1.0.0</version>
 </dependency>
 ```
-See more options in [maven.org](https://search.maven.org/artifact/com.github.f4b6a3/tsid-creator).
 
 ### Modularity
 
@@ -86,7 +85,7 @@ Module and bundle names are the same as the root package name.
 The `Tsid.toLong()` method simply unwraps the internal `long` value of a TSID.
 
 ```java
-long tsid = TsidCreator.getTsid().toLong();
+long tsid = TsidFactory.getTsid().toLong();
 ```
 
 Sequence of TSIDs:
@@ -119,7 +118,7 @@ Sequence of TSIDs:
 The `Tsid.toString()` method encodes a TSID to [Crockford's base 32](https://www.crockford.com/base32.html) encoding. The returned string is 13 characters long.
 
 ```java
-String tsid = TsidCreator.getTsid().toString();
+String tsid = TsidFactory.getTsid().toString();
 ```
 
 Sequence of TSID strings:
@@ -290,11 +289,11 @@ A key generator that makes substitution easy if necessary:
 ```java
 package com.example;
 
-import io.hypersistence.tsid.TsidCreator;
+import io.hypersistence.tsid.TsidFactory.TsidFactoryFactory;
 
 public class KeyGenerator {
     public static String next() {
-        return TsidCreator.getTsid().toString();
+        return TsidFactory.TsidFactory.getTsid().toString();
     }
 }
 ```
@@ -439,7 +438,7 @@ Tsid tsid = factory.create();
 Benchmark
 ------------------------------------------------------
 
-This section shows benchmarks comparing `TsidCreator` to `java.util.UUID`.
+This section shows benchmarks comparing `TsidFactory` to `java.util.UUID`.
 
 ```
 ---------------------------------------------------------------------------
@@ -451,14 +450,14 @@ UUID_randomUUID_toString          thrpt    5   1604,916 ±  189,711  ops/ms
 Tsid_fast                         thrpt    5  37397,739 ± 1128,756  ops/ms
 Tsid_fast_toString                thrpt    5  21144,662 ±  673,939  ops/ms
 -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
-TsidCreator_getTsid256            thrpt    5  10727,236 ±  761,920  ops/ms
-TsidCreator_getTsid256_toString   thrpt    5   6813,193 ±  867,041  ops/ms
+TsidFactory_getTsid256            thrpt    5  10727,236 ±  761,920  ops/ms
+TsidFactory_getTsid256_toString   thrpt    5   6813,193 ±  867,041  ops/ms
 -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
-TsidCreator_getTsid1024           thrpt    5  12146,561 ± 1533,959  ops/ms
-TsidCreator_getTsid1024_toString  thrpt    5   6507,373 ±  729,444  ops/ms
+TsidFactory_getTsid1024           thrpt    5  12146,561 ± 1533,959  ops/ms
+TsidFactory_getTsid1024_toString  thrpt    5   6507,373 ±  729,444  ops/ms
 -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
-TsidCreator_getTsid4096           thrpt    5  11589,976 ± 1757,076  ops/ms
-TsidCreator_getTsid4096_toString  thrpt    5   6497,042 ± 1339,480  ops/ms
+TsidFactory_getTsid4096           thrpt    5  11589,976 ± 1757,076  ops/ms
+TsidFactory_getTsid4096_toString  thrpt    5   6497,042 ± 1339,480  ops/ms
 ---------------------------------------------------------------------------
 Total time: 00:03:22
 ---------------------------------------------------------------------------

@@ -39,7 +39,7 @@ public class CollisionTest {
 
 			new Thread(() -> {
 				for (int j = 0; j < iterationCount; j++) {
-					Long tsid = factory.create().toLong();
+					Long tsid = factory.generate().toLong();
 					if (Objects.nonNull(tsidMap.put(tsid, (threadId * iterationCount) + j))) {
 						clashes.incrementAndGet();
 						break;

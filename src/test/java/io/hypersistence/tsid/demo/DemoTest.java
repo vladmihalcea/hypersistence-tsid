@@ -1,6 +1,6 @@
 package io.hypersistence.tsid.demo;
 
-import io.hypersistence.tsid.TsidCreator;
+import io.hypersistence.tsid.TsidFactory;
 
 public class DemoTest {
 
@@ -14,7 +14,7 @@ public class DemoTest {
 		System.out.println(HORIZONTAL_LINE);
 
 		for (int i = 0; i < max; i++) {
-			System.out.println(TsidCreator.getTsid1024().toLong());
+			System.out.println(TsidFactory.getTsid1024().toLong());
 		}
 
 		System.out.println(HORIZONTAL_LINE);
@@ -22,7 +22,7 @@ public class DemoTest {
 		System.out.println(HORIZONTAL_LINE);
 
 		for (int i = 0; i < max; i++) {
-			System.out.println(TsidCreator.getTsid1024().toString());
+			System.out.println(TsidFactory.getTsid1024().toString());
 		}
 	}
 

@@ -44,7 +44,7 @@ public class TsidFactoryTest {
 	public void testGetInstant() {
 
 		Instant start = Instant.now();
-		Tsid tsid = TsidCreator.getTsid();
+		Tsid tsid = TsidFactory.getTsid();
 		Instant middle = tsid.getInstant();
 		Instant end = Instant.now();
 
@@ -56,7 +56,7 @@ public class TsidFactoryTest {
 	public void testGetUnixMilliseconds() {
 
 		long start = System.currentTimeMillis();
-		Tsid tsid = (new TsidFactory()).create();
+		Tsid tsid = (new TsidFactory()).generate();
 		long middle = tsid.getUnixMilliseconds();
 		long end = System.currentTimeMillis();
 
@@ -78,7 +78,7 @@ public class TsidFactoryTest {
 			IntFunction<byte[]> randomFunction = x -> new byte[x]; // force to reinitialize the counter to ZERO
 			TsidFactory factory = TsidFactory.builder().withClock(clock).withRandomFunction(randomFunction).build();
 
-			long result = factory.create().getInstant().toEpochMilli();
+			long result = factory.generate().getInstant().toEpochMilli();
 			assertEquals("The current instant is incorrect", millis, result);
 		}
 	}
@@ -97,7 +97,7 @@ public class TsidFactoryTest {
 			IntFunction<byte[]> randomFunction = x -> new byte[x]; // force to reinitialize the counter to ZERO
 			TsidFactory factory = TsidFactory.builder().withClock(clock).withRandomFunction(randomFunction).build();
 
-			long result = factory.create().getUnixMilliseconds();
+			long result = factory.generate().getUnixMilliseconds();
 			assertEquals("The current millisecond is incorrect", millis, result);
 		}
 	}
@@ -108,7 +108,7 @@ public class TsidFactoryTest {
 		Instant customEpoch = Instant.parse("2015-10-23T00:00:00Z");
 
 		Instant start = Instant.now();
-		Tsid tsid = TsidFactory.builder().withCustomEpoch(customEpoch).build().create();
+		Tsid tsid = TsidFactory.builder().withCustomEpoch(customEpoch).build().generate();
 		Instant middle = tsid.getInstant(customEpoch);
 		Instant end = Instant.now();
 
@@ -122,7 +122,7 @@ public class TsidFactoryTest {
 		Instant customEpoch = Instant.parse("1984-01-01T00:00:00Z");
 
 		long start = System.currentTimeMillis();
-		Tsid tsid = TsidFactory.builder().withCustomEpoch(customEpoch).build().create();
+		Tsid tsid = TsidFactory.builder().withCustomEpoch(customEpoch).build().generate();
 		long middle = tsid.getInstant(customEpoch).toEpochMilli();
 		long end = System.currentTimeMillis();
 
@@ -139,7 +139,7 @@ public class TsidFactoryTest {
 				int mask = ((1 << bits) - 1);
 				int node = ThreadLocalRandom.current().nextInt() & mask;
 				TsidFactory factory = new TsidFactory(node);
-				assertEquals(node, (factory.create().getRandom() >>> shif) & mask);
+				assertEquals(node, (factory.generate().getRandom() >>> shif) & mask);
 			}
 		}
 		{
@@ -150,7 +150,7 @@ public class TsidFactoryTest {
 				int node = ThreadLocalRandom.current().nextInt() & mask;
 				System.setProperty(NODE, String.valueOf(node));
 				TsidFactory factory = new TsidFactory();
-				assertEquals(node, (factory.create().getRandom() >>> shif) & mask);
+				assertEquals(node, (factory.generate().getRandom() >>> shif) & mask);
 			}
 		}
 		{
@@ -160,7 +160,7 @@ public class TsidFactoryTest {
 				int mask = ((1 << bits) - 1);
 				int node = ThreadLocalRandom.current().nextInt() & mask;
 				TsidFactory factory = TsidFactory.builder().withNode(node).build();
-				assertEquals(node, (factory.create().getRandom() >>> shif) & mask);
+				assertEquals(node, (factory.generate().getRandom() >>> shif) & mask);
 			}
 		}
 		{
@@ -170,7 +170,7 @@ public class TsidFactoryTest {
 				int mask = ((1 << bits) - 1);
 				int node = ThreadLocalRandom.current().nextInt() & mask;
 				TsidFactory factory = TsidFactory.newInstance256(node);
-				assertEquals(node, (factory.create().getRandom() >>> shif) & mask);
+				assertEquals(node, (factory.generate().getRandom() >>> shif) & mask);
 			}
 		}
 		{
@@ -180,7 +180,7 @@ public class TsidFactoryTest {
 				int mask = ((1 << bits) - 1);
 				int node = ThreadLocalRandom.current().nextInt() & mask;
 				TsidFactory factory = TsidFactory.newInstance1024(node);
-				assertEquals(node, (factory.create().getRandom() >>> shif) & mask);
+				assertEquals(node, (factory.generate().getRandom() >>> shif) & mask);
 			}
 		}
 		{
@@ -190,7 +190,7 @@ public class TsidFactoryTest {
 				int mask = ((1 << bits) - 1);
 				int node = ThreadLocalRandom.current().nextInt() & mask;
 				TsidFactory factory = TsidFactory.newInstance4096(node);
-				assertEquals(node, (factory.create().getRandom() >>> shif) & mask);
+				assertEquals(node, (factory.generate().getRandom() >>> shif) & mask);
 			}
 		}
 	}
@@ -203,7 +203,7 @@ public class TsidFactoryTest {
 			final int nodeBits = i;
 			final int counterBits = randomBits - nodeBits;
 			final int node = (1 << nodeBits) - 1; // max: 2^nodeBits - 1
-			Tsid tsid = TsidFactory.builder().withNodeBits(nodeBits).withNode(node).build().create();
+			Tsid tsid = TsidFactory.builder().withNodeBits(nodeBits).withNode(node).build().generate();
 			int actual = (int) tsid.getRandom() >>> counterBits;
 			assertEquals(node, actual);
 		}
@@ -219,7 +219,7 @@ public class TsidFactoryTest {
 			final int node = (1 << nodeBits) - 1; // max: 2^nodeBits - 1
 			final int nodeCount = (int) Math.pow(2, nodeBits);
 			System.setProperty(NODE_COUNT, String.valueOf(nodeCount));
-			Tsid tsid = TsidFactory.builder().withNode(node).build().create();
+			Tsid tsid = TsidFactory.builder().withNode(node).build().generate();
 			int actual = (int) tsid.getRandom() >>> counterBits;
 			assertEquals(node, actual);
 		}
@@ -229,13 +229,13 @@ public class TsidFactoryTest {
 	public void testWithRandom() {
 		Random random = new Random();
 		TsidFactory factory = TsidFactory.builder().withRandom(random).build();
-		assertNotNull(factory.create());
+		assertNotNull(factory.generate());
 	}
 
 	@Test
 	public void testWithRandomNull() {
 		TsidFactory factory = TsidFactory.builder().withRandom(null).build();
-		assertNotNull(factory.create());
+		assertNotNull(factory.generate());
 	}
 
 	@Test
@@ -244,7 +244,7 @@ public class TsidFactoryTest {
 			SplittableRandom random = new SplittableRandom();
 			IntSupplier function = () -> random.nextInt();
 			TsidFactory factory = TsidFactory.builder().withRandomFunction(function).build();
-			assertNotNull(factory.create());
+			assertNotNull(factory.generate());
 		}
 		{
 			IntFunction<byte[]> function = (length) -> {
@@ -253,7 +253,7 @@ public class TsidFactoryTest {
 				return bytes;
 			};
 			TsidFactory factory = TsidFactory.builder().withRandomFunction(function).build();
-			assertNotNull(factory.create());
+			assertNotNull(factory.generate());
 		}
 	}
 
@@ -261,11 +261,11 @@ public class TsidFactoryTest {
 	public void testWithRandomFunctionNull() {
 		{
 			TsidFactory factory = TsidFactory.builder().withRandomFunction((IntSupplier) null).build();
-			assertNotNull(factory.create());
+			assertNotNull(factory.generate());
 		}
 		{
 			TsidFactory factory = TsidFactory.builder().withRandomFunction((IntFunction<byte[]>) null).build();
-			assertNotNull(factory.create());
+			assertNotNull(factory.generate());
 		}
 	}
 
@@ -283,7 +283,7 @@ public class TsidFactoryTest {
 		for (int i = 0; i < 5; i++) {
 			Thread.sleep(1); // wait 1ms
 			long expected = 0;
-			long counter = factory.create().getRandom() & mask;
+			long counter = factory.generate().getRandom() & mask;
 			assertEquals("The counter should be equal to ZERO when the ms changes", expected, counter);
 		}
 	}
@@ -303,7 +303,7 @@ public class TsidFactoryTest {
 		for (int i = 0; i < 5; i++) {
 			Thread.sleep(1); // wait 1ms
 			long expected = fixed[2];
-			long counter = factory.create().getRandom() & mask;
+			long counter = factory.generate().getRandom() & mask;
 			assertEquals("The counter should be equal to a fixed value when the ms changes", expected, counter);
 		}
 	}
@@ -344,13 +344,13 @@ public class TsidFactoryTest {
 
 		TsidFactory factory = TsidFactory.builder().withClock(clock).withRandomFunction(randomFunction).build();
 
-		long ms1 = factory.create().getUnixMilliseconds(); // time
-		long ms2 = factory.create().getUnixMilliseconds(); // time + 0
-		long ms3 = factory.create().getUnixMilliseconds(); // time + 1
-		long ms4 = factory.create().getUnixMilliseconds(); // time + 2
-		long ms5 = factory.create().getUnixMilliseconds(); // time + 3 - 10000 (CLOCK DRIFT)
-		long ms6 = factory.create().getUnixMilliseconds(); // time + 4 - 10000 (CLOCK DRIFT)
-		long ms7 = factory.create().getUnixMilliseconds(); // time + 5
+		long ms1 = factory.generate().getUnixMilliseconds(); // time
+		long ms2 = factory.generate().getUnixMilliseconds(); // time + 0
+		long ms3 = factory.generate().getUnixMilliseconds(); // time + 1
+		long ms4 = factory.generate().getUnixMilliseconds(); // time + 2
+		long ms5 = factory.generate().getUnixMilliseconds(); // time + 3 - 10000 (CLOCK DRIFT)
+		long ms6 = factory.generate().getUnixMilliseconds(); // time + 4 - 10000 (CLOCK DRIFT)
+		long ms7 = factory.generate().getUnixMilliseconds(); // time + 5
 		assertEquals(ms1 + 0, ms2); // clock repeats.
 		assertEquals(ms1 + 1, ms3); // clock advanced.
 		assertEquals(ms1 + 2, ms4); // clock advanced.
@@ -395,8 +395,8 @@ public class TsidFactoryTest {
 
 		TsidFactory factory = TsidFactory.builder().withClock(clock).withRandomFunction(randomFunction).build();
 
-		long ms1 = factory.create().getUnixMilliseconds(); // second
-		long ms2 = factory.create().getUnixMilliseconds(); // leap second
+		long ms1 = factory.generate().getUnixMilliseconds(); // second
+		long ms2 = factory.generate().getUnixMilliseconds(); // leap second
 
 		assertEquals(ms1, ms2); // LEAP SECOND! DON'T MOVE BACKWARDS!
 	}
