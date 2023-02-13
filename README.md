@@ -4,6 +4,16 @@ TSID Creator
 
 A Java library for generating Time-Sorted Unique Identifiers (TSID).
 
+This version is a fork of the original[tsid-creator](https://github.com/f4b6a3/tsid-creator/) created by Fabio Lima.
+
+The reason why the project was forked was due to [this comment](https://github.com/f4b6a3/tsid-creator/issues/25) from the original author:
+
+> Take what you need from this project and use it on your own. Go ahead and make a better TSID!
+>
+> I don't intend to add more features here. From now on, this project will only be maintained. I'm getting tired.
+> 
+> I wish you good luck!
+
 It brings together ideas from [Twitter's Snowflake](https://github.com/twitter-archive/snowflake/tree/snowflake-2010) and [ULID Spec](https://github.com/ulid/spec).
 
 In summary:
