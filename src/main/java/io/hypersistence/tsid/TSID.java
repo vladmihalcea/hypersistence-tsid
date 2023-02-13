@@ -31,6 +31,7 @@ import java.time.Clock;
 import java.time.Instant;
 import java.util.Random;
 import java.util.SplittableRandom;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.IntFunction;
 import java.util.function.IntSupplier;
@@ -714,7 +715,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 
 	static class BaseN {
 
-		private static final BigInteger MAX = BigInteger.TWO.pow(64);
+		private static final BigInteger MAX = BigInteger.valueOf(2).pow(64);
 		private static final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; // base-62
 
 		static String encode(final TSID tsid, final int base) {
@@ -797,6 +798,8 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		public static final Factory INSTANCE_1024 = newInstance1024();
 
 		public static final Factory INSTANCE_4096 = newInstance4096();
+
+		public static final IntSupplier THREAD_LOCAL_RANDOM_FUNCTION = () -> ThreadLocalRandom.current().nextInt();
 
 		private int counter;
 		private long lastTime;
@@ -954,7 +957,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 *
 		 * @return a TSID.
 		 */
-		public synchronized TSID generate() {
+		public TSID generate() {
 
 			final long _time = getTime() << RANDOM_BITS;
 			final long _node = (long) this.node << this.counterBits;
@@ -1256,11 +1259,11 @@ public final class TSID implements Serializable, Comparable<TSID> {
 			}
 		}
 
-		static interface IRandom {
+		interface IRandom {
 
-			public int nextInt();
+			int nextInt();
 
-			public byte[] nextBytes(int length);
+			byte[] nextBytes(int length);
 		}
 
 		static class IntRandom implements IRandom {
