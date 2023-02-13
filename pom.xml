@@ -3,7 +3,7 @@
 
 	<groupId>io.hypersistence</groupId>
 	<artifactId>tsid</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>tsid</name>
