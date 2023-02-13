@@ -18,7 +18,7 @@ public class TsidFactory00256Test extends TsidFactory00000Test {
 
 		long startTime = System.currentTimeMillis();
 
-		TsidFactory factory = TsidFactory.builder().withNodeBits(NODE_BITS).withRandom(random).build();
+		TSID.Factory factory = TSID.Factory.builder().withNodeBits(NODE_BITS).withRandom(random).build();
 
 		long[] list = new long[LOOP_MAX];
 		for (int i = 0; i < LOOP_MAX; i++) {
@@ -40,7 +40,7 @@ public class TsidFactory00256Test extends TsidFactory00000Test {
 		long startTime = System.currentTimeMillis();
 
 		int node = random.nextInt(NODE_MAX);
-		TsidFactory factory = TsidFactory.builder().withNode(node).withNodeBits(NODE_BITS).withRandom(random).build();
+		TSID.Factory factory = TSID.Factory.builder().withNode(node).withNodeBits(NODE_BITS).withRandom(random).build();
 
 		long[] list = new long[LOOP_MAX];
 		for (int i = 0; i < LOOP_MAX; i++) {
@@ -61,7 +61,7 @@ public class TsidFactory00256Test extends TsidFactory00000Test {
 
 		long startTime = System.currentTimeMillis();
 
-		TsidFactory factory = TsidFactory.builder().withNodeBits(NODE_BITS).withRandom(random).build();
+		TSID.Factory factory = TSID.Factory.builder().withNodeBits(NODE_BITS).withRandom(random).build();
 
 		String[] list = new String[LOOP_MAX];
 		for (int i = 0; i < LOOP_MAX; i++) {
@@ -83,7 +83,7 @@ public class TsidFactory00256Test extends TsidFactory00000Test {
 		long startTime = System.currentTimeMillis();
 
 		int node = random.nextInt(NODE_MAX);
-		TsidFactory factory = TsidFactory.builder().withNode(node).withNodeBits(NODE_BITS).withRandom(random).build();
+		TSID.Factory factory = TSID.Factory.builder().withNode(node).withNodeBits(NODE_BITS).withRandom(random).build();
 
 		String[] list = new String[LOOP_MAX];
 		for (int i = 0; i < LOOP_MAX; i++) {
@@ -107,7 +107,7 @@ public class TsidFactory00256Test extends TsidFactory00000Test {
 
 		// Instantiate and start many threads
 		for (int i = 0; i < THREAD_TOTAL; i++) {
-			TsidFactory factory = TsidFactory.builder().withNode(i).withNodeBits(NODE_BITS).withRandom(random).build();
+			TSID.Factory factory = TSID.Factory.builder().withNode(i).withNodeBits(NODE_BITS).withRandom(random).build();
 			threads[i] = new TestThread(factory, COUNTER_MAX);
 			threads[i].start();
 		}

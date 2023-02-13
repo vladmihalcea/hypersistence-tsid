@@ -15,9 +15,9 @@ public class TsidBaseNTest {
 
 		for (int i = 0; i < list.length; i++) {
 			BigInteger o = new BigInteger(list[i][0], 16);
-			Tsid tsid = new Tsid(o.longValue());
+			TSID tsid = new TSID(o.longValue());
 			assertEquals(list[i][1], tsid.encode(radix));
-			assertEquals(tsid, Tsid.decode(list[i][1], radix));
+			assertEquals(tsid, TSID.decode(list[i][1], radix));
 		}
 	}
 
@@ -27,9 +27,9 @@ public class TsidBaseNTest {
 		final String[][] list = BASE43;
 		for (int i = 0; i < list.length; i++) {
 			BigInteger o = new BigInteger(list[i][0], 16);
-			Tsid tsid = new Tsid(o.longValue());
+			TSID tsid = new TSID(o.longValue());
 			assertEquals(list[i][1], tsid.encode(radix));
-			assertEquals(tsid, Tsid.decode(list[i][1], radix));
+			assertEquals(tsid, TSID.decode(list[i][1], radix));
 		}
 	}
 
@@ -39,9 +39,9 @@ public class TsidBaseNTest {
 		final String[][] list = BASE62;
 		for (int i = 0; i < list.length; i++) {
 			BigInteger o = new BigInteger(list[i][0], 16);
-			Tsid tsid = new Tsid(o.longValue());
+			TSID tsid = new TSID(o.longValue());
 			assertEquals(list[i][1], tsid.encode(radix));
-			assertEquals(tsid, Tsid.decode(list[i][1], radix));
+			assertEquals(tsid, TSID.decode(list[i][1], radix));
 		}
 	}
 
@@ -50,8 +50,8 @@ public class TsidBaseNTest {
 
 		{
 			try {
-				String string = Tsid.fast().encode(62);
-				Tsid.decode(string, 62);
+				String string = TSID.fast().encode(62);
+				TSID.decode(string, 62);
 				// success
 			} catch (IllegalArgumentException e) {
 				fail();
@@ -60,56 +60,56 @@ public class TsidBaseNTest {
 
 		{
 			try {
-				Tsid.fast().encode(1);
+				TSID.fast().encode(1);
 				fail();
 			} catch (IllegalArgumentException e) {
 				// success
 			}
 			try {
-				Tsid.fast().encode(63);
+				TSID.fast().encode(63);
 				fail();
 			} catch (IllegalArgumentException e) {
 				// success
 			}
 
 			try {
-				Tsid.decode(null, 62);
+				TSID.decode(null, 62);
 				fail();
 			} catch (IllegalArgumentException e) {
 				// success
 			}
 			try {
-				Tsid.decode("", 1);
+				TSID.decode("", 1);
 				fail();
 			} catch (IllegalArgumentException e) {
 				// success
 			}
 			try {
-				Tsid.decode("", 63);
+				TSID.decode("", 63);
 				fail();
 			} catch (IllegalArgumentException e) {
 				// success
 			}
 			try {
-				Tsid.decode("", 62);
+				TSID.decode("", 62);
 				fail();
 			} catch (IllegalArgumentException e) {
 				// success
 			}
 			try {
-				Tsid.decode("0000000000+", 62);
+				TSID.decode("0000000000+", 62);
 				fail();
 			} catch (IllegalArgumentException e) {
 				// success
 			}
 			try {
-				Tsid.decode("0000000000z", 61);
+				TSID.decode("0000000000z", 61);
 				fail();
 			} catch (IllegalArgumentException e) {
 				// success
 			}
 			try {
-				Tsid.decode("zzzzzzzzzzz", 62);
+				TSID.decode("zzzzzzzzzzz", 62);
 				fail();
 			} catch (IllegalArgumentException e) {
 				// success

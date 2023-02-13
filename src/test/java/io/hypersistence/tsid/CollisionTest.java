@@ -13,8 +13,8 @@ import org.junit.Test;
 
 public class CollisionTest {
 
-	private TsidFactory newFactory(int nodeBits) {
-		return TsidFactory.builder().withRandomFunction(() -> ThreadLocalRandom.current().nextInt())
+	private TSID.Factory newFactory(int nodeBits) {
+		return TSID.Factory.builder().withRandomFunction(() -> ThreadLocalRandom.current().nextInt())
 				.withNodeBits(nodeBits) // 8 bits: 256 nodes; 10 bits: 1024 nodes...
 				.build();
 	}
@@ -31,7 +31,7 @@ public class CollisionTest {
 		ConcurrentMap<Long, Integer> tsidMap = new ConcurrentHashMap<>();
 
 		// one generator shared by ALL THREADS
-		TsidFactory factory = newFactory(nodeBits);
+		TSID.Factory factory = newFactory(nodeBits);
 
 		for (int i = 0; i < threadCount; i++) {
 

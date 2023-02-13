@@ -3,8 +3,8 @@ package io.hypersistence.tsid.uniq;
 import java.util.HashSet;
 import java.util.Random;
 
+import io.hypersistence.tsid.TSID;
 import io.hypersistence.tsid.TestSuite;
-import io.hypersistence.tsid.TsidFactory;
 
 /**
  * This is is not included in the {@link TestSuite} because it may take a long
@@ -60,12 +60,12 @@ public class UniquenessTest {
 		private int id;
 		private boolean verbose;
 
-		private TsidFactory factory;
+		private TSID.Factory factory;
 
 		public UniquenessTestThread(int id, boolean verbose) {
 			this.id = id;
 			this.verbose = verbose;
-			this.factory = TsidFactory.builder().withNode(id).withRandom(new Random()).build();
+			this.factory = TSID.Factory.builder().withNode(id).withRandom(new Random()).build();
 		}
 
 		/**

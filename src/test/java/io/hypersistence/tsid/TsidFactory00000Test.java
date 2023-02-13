@@ -27,12 +27,12 @@ public abstract class TsidFactory00000Test {
 
 	protected static class TestThread extends Thread {
 
-		private TsidFactory creator;
+		private TSID.Factory creator;
 		private int loopLimit;
 
 		protected static final Set<Long> hashSet = new HashSet<>();
 
-		public TestThread(TsidFactory creator, int loopLimit) {
+		public TestThread(TSID.Factory creator, int loopLimit) {
 			this.creator = creator;
 			this.loopLimit = loopLimit;
 		}
@@ -66,7 +66,7 @@ public abstract class TsidFactory00000Test {
 			assertFalse("TSID is empty", tsid.isEmpty());
 			assertFalse("TSID is blank", tsid.replace(" ", "").isEmpty());
 			assertEquals("TSID length is wrong " + tsid.length(), TSID_LENGTH, tsid.length());
-			assertTrue("TSID is not valid", Tsid.isValid(tsid));
+			assertTrue("TSID is not valid", TSID.isValid(tsid));
 		}
 		return true; // success
 	}
@@ -119,7 +119,7 @@ public abstract class TsidFactory00000Test {
 		HashMap<Long, ArrayList<Long>> map = new HashMap<>();
 
 		for (Long tsid : list) {
-			Long key = Tsid.from(tsid).getTime();
+			Long key = TSID.from(tsid).getTime();
 			if (map.get(key) == null) {
 				map.put(key, new ArrayList<>());
 			}
@@ -135,7 +135,7 @@ public abstract class TsidFactory00000Test {
 		HashMap<Long, HashSet<String>> map = new HashMap<>();
 
 		for (String tsid : list) {
-			Long key = Tsid.from(tsid).getTime();
+			Long key = TSID.from(tsid).getTime();
 			if (map.get(key) == null) {
 				map.put(key, new HashSet<>());
 			}
@@ -152,7 +152,7 @@ public abstract class TsidFactory00000Test {
 		assertTrue("Start time was after end time", startTime <= endTime);
 
 		for (Long tsid : list) {
-			long creationTime = Tsid.from(tsid).getInstant().toEpochMilli();
+			long creationTime = TSID.from(tsid).getInstant().toEpochMilli();
 			assertTrue("Creation time was before start time", creationTime >= startTime);
 			assertTrue("Creation time was after end time", creationTime <= endTime + LOOP_MAX);
 		}
@@ -164,7 +164,7 @@ public abstract class TsidFactory00000Test {
 		assertTrue("Start time was after end time", startTime <= endTime);
 
 		for (String tsid : list) {
-			long creationTime = Tsid.from(tsid).getInstant().toEpochMilli();
+			long creationTime = TSID.from(tsid).getInstant().toEpochMilli();
 			assertTrue("Creation time was before start time ", creationTime >= startTime);
 			assertTrue("Creation time was after end time", creationTime <= endTime + LOOP_MAX);
 		}

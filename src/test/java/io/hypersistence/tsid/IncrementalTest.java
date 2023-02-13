@@ -43,17 +43,17 @@ public class IncrementalTest {
     public void shouldGenerateIncrementalValuesInCaseOfBackwardAGlitch() {
         ClockMock clock = new ClockMock();
 
-        TsidFactory factory = TsidFactory.builder()
+        TSID.Factory factory = TSID.Factory.builder()
                 .withNodeBits(20)
                 .withNode(0)
                 .withClock(clock)
                 .build();
 
-        Tsid prev = factory.generate();
+        TSID prev = factory.generate();
 
         clock.decrementMillis(TEN_SECONDS - 1);
 
-        Tsid next = factory.generate();
+        TSID next = factory.generate();
 
         assertIncremental(prev, next);
     }
@@ -62,17 +62,17 @@ public class IncrementalTest {
     public void shouldGenerateIncrementalValuesInCaseOfForwardAGlitch() {
         ClockMock clock = new ClockMock();
 
-        TsidFactory factory = TsidFactory.builder()
+        TSID.Factory factory = TSID.Factory.builder()
                 .withNodeBits(20)
                 .withNode(0)
                 .withClock(clock)
                 .build();
 
-        Tsid prev = factory.generate();
+        TSID prev = factory.generate();
 
         clock.incrementMillis(TEN_SECONDS - 1);
 
-        Tsid next = factory.generate();
+        TSID next = factory.generate();
 
         assertIncremental(prev, next);
     }
@@ -80,7 +80,7 @@ public class IncrementalTest {
     @Test
     public void shouldManageAGlitch() {
     	
-        TsidFactory factory = TsidFactory.builder()
+        TSID.Factory factory = TSID.Factory.builder()
                 .withRandomFunction(() -> 0)
                 .withClock(new ClockMock())
                 .withNodeBits(20)
@@ -96,16 +96,16 @@ public class IncrementalTest {
             last = tsid;
         }
         
-        Tsid prev = factory.generate();
+        TSID prev = factory.generate();
         assertTrue(last < prev.toLong());
         
-        Tsid next = factory.generate();
+        TSID next = factory.generate();
         assertIncremental(prev, next);
     }
 
      @Test
     public void shouldAlwaysBeIncremental() {
-        TsidFactory factory = TsidFactory.builder()
+        TSID.Factory factory = TSID.Factory.builder()
                 .withNodeBits(20)
                 .withNode(0)
                 .build();
@@ -118,14 +118,14 @@ public class IncrementalTest {
                      "   iteration: %d\n" +
                      "   previous: %s  long= %d\n" +
                      "   actual  : %s  long= %d\n", i,
-                                     Tsid.from(last).toString(), last,
-                                     Tsid.from(tsid).toString(), tsid));
+                                     TSID.from(last).toString(), last,
+                                     TSID.from(tsid).toString(), tsid));
             }
             last = tsid;
         }
     }
 
-    private void assertIncremental(Tsid prev, Tsid next) {
+    private void assertIncremental(TSID prev, TSID next) {
         assertTrue(
                 String.format("generated TSID value is less that the previous one:\n" +
                 "   previous: %s  long= %d\n" +
