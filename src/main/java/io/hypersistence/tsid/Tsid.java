@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.github.f4b6a3.tsid;
+package io.hypersistence.tsid;
 
 import java.io.Serializable;
 import java.math.BigInteger;

@@ -15,8 +15,8 @@ import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Threads;
 import org.openjdk.jmh.annotations.Warmup;
 
-import com.github.f4b6a3.tsid.Tsid;
-import com.github.f4b6a3.tsid.TsidCreator;
+import io.hypersistence.tsid.Tsid;
+import io.hypersistence.tsid.TsidCreator;
 
 @Fork(1)
 @Threads(4)

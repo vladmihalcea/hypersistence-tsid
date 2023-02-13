@@ -74,7 +74,7 @@ Add OSGi entries to Manifest.MF #11
 
 Module and bundle names are the same as the root package name.
 
-The OSGi symbolic name is the same as the JPMS module name: `com.github.f4b6a3.tsid`.
+The OSGi symbolic name is the same as the JPMS module name: `io.hypersistence.tsid`.
 
 ## [4.0.0] - 2021-08-08
 
@@ -106,7 +106,7 @@ Module name for Java 9+ #7
 
 -   Added
 
--   Added this line to MANIFEST.MF: `Automatic-Module-Name: com.github.f4b6a3.tsid`
+-   Added this line to MANIFEST.MF: `Automatic-Module-Name: io.hypersistence.tsid`
 
 ### Upated
 

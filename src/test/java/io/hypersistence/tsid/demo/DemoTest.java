@@ -1,6 +1,6 @@
-package com.github.f4b6a3.tsid.demo;
+package io.hypersistence.tsid.demo;
 
-import com.github.f4b6a3.tsid.TsidCreator;
+import io.hypersistence.tsid.TsidCreator;
 
 public class DemoTest {
 

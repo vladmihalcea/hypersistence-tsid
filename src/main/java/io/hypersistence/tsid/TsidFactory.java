@@ -22,10 +22,10 @@
  * SOFTWARE.
  */
 
-package com.github.f4b6a3.tsid;
+package io.hypersistence.tsid;
 
-import static com.github.f4b6a3.tsid.Tsid.RANDOM_BITS;
-import static com.github.f4b6a3.tsid.Tsid.RANDOM_MASK;
+import static io.hypersistence.tsid.Tsid.RANDOM_BITS;
+import static io.hypersistence.tsid.Tsid.RANDOM_MASK;
 import java.security.SecureRandom;
 import java.time.Clock;
 import java.time.Instant;

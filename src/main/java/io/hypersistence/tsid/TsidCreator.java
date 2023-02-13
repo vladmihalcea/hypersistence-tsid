@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.github.f4b6a3.tsid;
+package io.hypersistence.tsid;
 
 /**
  * A utility that generates Time-Sorted Unique Identifiers (TSID).

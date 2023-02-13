@@ -1,4 +1,4 @@
-package com.github.f4b6a3.tsid;
+package io.hypersistence.tsid;
 
 import java.time.Clock;
 import java.time.Instant;

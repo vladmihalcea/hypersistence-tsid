@@ -1,20 +1,20 @@
-package com.github.f4b6a3.tsid;
+package io.hypersistence.tsid;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class TsidFactory00064Test extends TsidFactory00000Test {
+public class TsidFactory01024Test extends TsidFactory00000Test {
 
-	private static final int NODE_BITS = 6;
-	private static final int COUNTER_BITS = 16;
+	private static final int NODE_BITS = 10;
+	private static final int COUNTER_BITS = 12;
 	
 	private static final int NODE_MAX = (int) Math.pow(2, NODE_BITS);
 	private static final int COUNTER_MAX = (int) Math.pow(2, COUNTER_BITS);
 
 	@Test
-	public void testGetTsid1() {
+	public void testGetTsid1024() {
 
 		long startTime = System.currentTimeMillis();
 
@@ -35,7 +35,7 @@ public class TsidFactory00064Test extends TsidFactory00000Test {
 	}
 
 	@Test
-	public void testGetTsid1WithNode() {
+	public void testGetTsid1024WithNode() {
 
 		long startTime = System.currentTimeMillis();
 
@@ -57,7 +57,7 @@ public class TsidFactory00064Test extends TsidFactory00000Test {
 	}
 
 	@Test
-	public void testGetTsidString1() {
+	public void testGetTsidString1024() {
 
 		long startTime = System.currentTimeMillis();
 
@@ -78,7 +78,7 @@ public class TsidFactory00064Test extends TsidFactory00000Test {
 	}
 
 	@Test
-	public void testGetTsidString1WithNode() {
+	public void testGetTsidString1024WithNode() {
 
 		long startTime = System.currentTimeMillis();
 
@@ -100,17 +100,15 @@ public class TsidFactory00064Test extends TsidFactory00000Test {
 	}
 
 	@Test
-	public void testGetTsid1Parallel() throws InterruptedException {
+	public void testGetTsid1024Parallel() throws InterruptedException {
 
 		TestThread.clearHashSet();
 		Thread[] threads = new Thread[THREAD_TOTAL];
-		int counterMax = COUNTER_MAX / THREAD_TOTAL;
-
-		TsidFactory factory = TsidFactory.builder().withNodeBits(NODE_BITS).withRandom(random).build();
 
 		// Instantiate and start many threads
 		for (int i = 0; i < THREAD_TOTAL; i++) {
-			threads[i] = new TestThread(factory, counterMax);
+			TsidFactory factory = TsidFactory.builder().withNode(i).withNodeBits(NODE_BITS).withRandom(random).build();
+			threads[i] = new TestThread(factory, COUNTER_MAX);
 			threads[i].start();
 		}
 
@@ -120,6 +118,6 @@ public class TsidFactory00064Test extends TsidFactory00000Test {
 		}
 
 		// Check if the quantity of unique UUIDs is correct
-		assertEquals(DUPLICATE_UUID_MSG, (counterMax * THREAD_TOTAL), TestThread.hashSet.size());
+		assertEquals(DUPLICATE_UUID_MSG, (COUNTER_MAX * THREAD_TOTAL), TestThread.hashSet.size());
 	}
 }

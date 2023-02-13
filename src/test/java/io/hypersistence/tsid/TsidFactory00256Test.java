@@ -1,20 +1,20 @@
-package com.github.f4b6a3.tsid;
+package io.hypersistence.tsid;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class TsidFactory01024Test extends TsidFactory00000Test {
+public class TsidFactory00256Test extends TsidFactory00000Test {
 
-	private static final int NODE_BITS = 10;
-	private static final int COUNTER_BITS = 12;
+	private static final int NODE_BITS = 8;
+	private static final int COUNTER_BITS = 14;
 	
 	private static final int NODE_MAX = (int) Math.pow(2, NODE_BITS);
 	private static final int COUNTER_MAX = (int) Math.pow(2, COUNTER_BITS);
 
 	@Test
-	public void testGetTsid1024() {
+	public void testGetTsid256() {
 
 		long startTime = System.currentTimeMillis();
 
@@ -35,7 +35,7 @@ public class TsidFactory01024Test extends TsidFactory00000Test {
 	}
 
 	@Test
-	public void testGetTsid1024WithNode() {
+	public void testGetTsid256WithNode() {
 
 		long startTime = System.currentTimeMillis();
 
@@ -57,7 +57,7 @@ public class TsidFactory01024Test extends TsidFactory00000Test {
 	}
 
 	@Test
-	public void testGetTsidString1024() {
+	public void testGetTsidString256() {
 
 		long startTime = System.currentTimeMillis();
 
@@ -78,7 +78,7 @@ public class TsidFactory01024Test extends TsidFactory00000Test {
 	}
 
 	@Test
-	public void testGetTsidString1024WithNode() {
+	public void testGetTsidString256WithNode() {
 
 		long startTime = System.currentTimeMillis();
 
@@ -100,7 +100,7 @@ public class TsidFactory01024Test extends TsidFactory00000Test {
 	}
 
 	@Test
-	public void testGetTsid1024Parallel() throws InterruptedException {
+	public void testGetTsid256Parallel() throws InterruptedException {
 
 		TestThread.clearHashSet();
 		Thread[] threads = new Thread[THREAD_TOTAL];

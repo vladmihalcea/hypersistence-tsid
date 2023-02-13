@@ -1,14 +1,14 @@
-package com.github.f4b6a3.tsid;
+package io.hypersistence.tsid;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class TsidFactory16384Test extends TsidFactory00000Test {
+public class TsidFactory00001Test extends TsidFactory00000Test {
 
-	private static final int NODE_BITS = 14;
-	private static final int COUNTER_BITS = 8;
+	private static final int NODE_BITS = 0;
+	private static final int COUNTER_BITS = 22;
 	
 	private static final int NODE_MAX = (int) Math.pow(2, NODE_BITS);
 	private static final int COUNTER_MAX = (int) Math.pow(2, COUNTER_BITS);
@@ -106,9 +106,10 @@ public class TsidFactory16384Test extends TsidFactory00000Test {
 		Thread[] threads = new Thread[THREAD_TOTAL];
 		int counterMax = COUNTER_MAX / THREAD_TOTAL;
 
+		TsidFactory factory = TsidFactory.builder().withNodeBits(NODE_BITS).withRandom(random).build();
+
 		// Instantiate and start many threads
 		for (int i = 0; i < THREAD_TOTAL; i++) {
-			TsidFactory factory = TsidFactory.builder().withNode(i).withNodeBits(NODE_BITS).withRandom(random).build();
 			threads[i] = new TestThread(factory, counterMax);
 			threads[i].start();
 		}

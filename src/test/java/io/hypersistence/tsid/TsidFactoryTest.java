@@ -1,4 +1,4 @@
-package com.github.f4b6a3.tsid;
+package io.hypersistence.tsid;
 
 import static org.junit.Assert.*;
 
@@ -18,9 +18,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.github.f4b6a3.tsid.TsidFactory.Settings;
-import static com.github.f4b6a3.tsid.TsidFactory.Settings.NODE;
-import static com.github.f4b6a3.tsid.TsidFactory.Settings.NODE_COUNT;
+import static io.hypersistence.tsid.TsidFactory.Settings;
+import static io.hypersistence.tsid.TsidFactory.Settings.NODE;
+import static io.hypersistence.tsid.TsidFactory.Settings.NODE_COUNT;
 
 public class TsidFactoryTest {
 

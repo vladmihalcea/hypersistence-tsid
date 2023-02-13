@@ -78,8 +78,8 @@ See more options in [maven.org](https://search.maven.org/artifact/com.github.f4b
 
 Module and bundle names are the same as the root package name.
 
-*   JPMS module name: `com.github.f4b6a3.tsid`
-*   OSGi symbolic name: `com.github.f4b6a3.tsid`
+*   JPMS module name: `io.hypersistence.tsid`
+*   OSGi symbolic name: `io.hypersistence.tsid`
 
 ### TSID as Long
 
@@ -290,7 +290,7 @@ A key generator that makes substitution easy if necessary:
 ```java
 package com.example;
 
-import com.github.f4b6a3.tsid.TsidCreator;
+import io.hypersistence.tsid.TsidCreator;
 
 public class KeyGenerator {
     public static String next() {
