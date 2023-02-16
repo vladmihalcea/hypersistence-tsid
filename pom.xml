@@ -2,12 +2,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.hypersistence</groupId>
-	<artifactId>tsid</artifactId>
+	<artifactId>hypersistence-tsid</artifactId>
 	<version>1.1.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>tsid</name>
-	<url>https://github.com/vladmihalcea/tsid</url>
+	<name>hypersistence-tsid</name>
+	<url>https://github.com/vladmihalcea/hypersistence-tsid</url>
 	<description>A Java library for generating Time-Sorted Unique Identifiers (TSID).</description>
 
 	<licenses>
@@ -60,10 +60,9 @@
 	</dependencies>
 
 	<scm>
-		<url>https://github.com/vladmihalcea/tsid</url>
-		<connection>scm:git:ssh://git@github.com/vladmihalcea/tsid.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/vladmihalcea/tsid.git</developerConnection>
-		<tag>tsid-1.0.0</tag>
+		<url>https://github.com/vladmihalcea/hypersistence-tsid</url>
+		<connection>scm:git:ssh://git@github.com/vladmihalcea/hypersistence-tsid.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/vladmihalcea/hypersistence-tsid.git</developerConnection>
 	</scm>
 
 	<distributionManagement>
