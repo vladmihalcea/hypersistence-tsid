@@ -62,7 +62,7 @@ public class CollisionTest {
 
 		int nodeBits = 1;
 		int threadCount = 16;
-		int iterationCount = 100_000;
+		int iterationCount = 200_000;
 
 		AtomicInteger clashes = new AtomicInteger();
 		CountDownLatch endLatch = new CountDownLatch(threadCount);

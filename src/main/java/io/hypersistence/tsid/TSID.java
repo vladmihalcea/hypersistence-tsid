@@ -884,7 +884,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 
 			// finally, initialize internal state
 			this.lastTime = clock.millis();
-			this.counter = getRandomCounter();
+			this.counter = getRandomValue();
 		}
 
 		/**
@@ -1027,6 +1027,19 @@ public final class TSID implements Serializable, Comparable<TSID> {
 			} else {
 				return random.nextInt() & this.counterMask;
 			}
+		}
+
+		/**
+		 * Returns a random value based on the counter and the current Thread id.
+		 *
+		 * @return a number
+		 */
+		private int getRandomValue() {
+
+			int randomCounter = getRandomCounter();
+			int threadId = ((int) (Thread.currentThread().getId()) & this.counterMask);
+
+			return threadId | randomCounter;
 		}
 
 		/**
