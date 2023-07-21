@@ -194,44 +194,44 @@ The time component can be 1 ms or more ahead of the system time when necessary t
 
 The simplest way to avoid collisions is to make sure that each generator has its exclusive node ID.
 
-The node ID can be given to `TSID.Factory` by defining the `tsidcreator.node` system property or the `TSIDCREATOR_NODE` environment variable. Otherwise, the node identifier will be chosen randomly.
+The node ID can be given to `TSID.Factory` by defining the `tsid.node` system property or the `TSID_NODE` environment variable. Otherwise, the node identifier will be chosen randomly.
 
-The total number of nodes can be given to `TSID.Factory` by defining the `tsidcreator.node.count` system property or the `TSIDCREATOR_NODE_COUNT` environment variable. If this property or variable is set, `TSID.Factory` will adjust the amount of bits needed to fit the given node count. For example, if the value 100 is given, the number of bits reserved for the node ID is set to 7, which is the minimum number of bits needed to fit 100 nodes. Otherwise, the default number of bits is set to 10, which can accommodate 1024 nodes.
+The total number of nodes can be given to `TSID.Factory` by defining the `tsid.node.count` system property or the `TSID_NODE_COUNT` environment variable. If this property or variable is set, `TSID.Factory` will adjust the amount of bits needed to fit the given node count. For example, if the value 100 is given, the number of bits reserved for the node ID is set to 7, which is the minimum number of bits needed to fit 100 nodes. Otherwise, the default number of bits is set to 10, which can accommodate 1024 nodes.
 
 System properties:
 
-*   `tsidcreator.node`: the node identifier.
-*   `tsidcreator.node.count`: the total number of nodes.
+*   `tsid.node`: the node identifier.
+*   `tsid.node.count`: the total number of nodes.
 
 Environment variables:
 
-*   `TSIDCREATOR_NODE`: the node identifier.
-*   `TSIDCREATOR_NODE_COUNT`: the total number of nodes.
+*   `TSID_NODE`: the node identifier.
+*   `TSID_NODE_COUNT`: the total number of nodes.
 
 Using system properties:
 
 ```bash
 // append to VM arguments
--Dtsidcreator.node="755"
+-Dtsid.node="755"
 ```
 
 ```bash
 // append to VM arguments
--Dtsidcreator.node="42" \
--Dtsidcreator.node.count="100"
+-Dtsid.node="42" \
+-Dtsid.node.count="100"
 ```
 
 Using environment variables:
 
 ```bash
 # append to ~/.profile
-export TSIDCREATOR_NODE="492"
+export TSID_NODE="492"
 ```
 
 ```bash
 # append to ~/.profile
-export TSIDCREATOR_NODE="123"
-export TSIDCREATOR_NODE_COUNT="200"
+export TSID_NODE="123"
+export TSID_NODE_COUNT="200"
 ```
 
 ### More Examples

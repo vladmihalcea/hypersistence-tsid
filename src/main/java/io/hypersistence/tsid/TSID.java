@@ -299,7 +299,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * pseudo-random generator <b>should</b> use {@link Factory#getTsid()}.
 	 * <p>
 	 * System property "tsidcreator.node" and environment variable
-	 * "TSIDCREATOR_NODE" are ignored by this method. Therefore, there will be
+	 * "TSID_NODE" are ignored by this method. Therefore, there will be
 	 * collisions if more than one process is generating TSIDs using this method. In
 	 * that case, {@link Factory#getTsid()} <b>should</b> be used in conjunction
 	 * with that property or variable.
@@ -771,14 +771,14 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * for example changing the default {@link SecureRandom} random generator to a faster pseudo-random generator.
 	 * <p>
 	 * If a system property "tsidcreator.node" or environment variable
-	 * "TSIDCREATOR_NODE" is defined, its value is utilized as node identifier. One
+	 * "TSID_NODE" is defined, its value is utilized as node identifier. One
 	 * of them <b>should</b> be defined to embed a machine ID in the generated TSID
 	 * in order to avoid TSID collisions. Using that property or variable is
 	 * <b>highly recommended</b>. If no property or variable is defined, a random
 	 * node ID is generated at initialization.
 	 * <p>
 	 * If a system property "tsidcreator.node.count" or environment variable
-	 * "TSIDCREATOR_NODE_COUNT" is defined, its value is utilized by the
+	 * "TSID_NODE_COUNT" is defined, its value is utilized by the
 	 * constructors of this class to adjust the amount of bits needed to embed the
 	 * node ID. For example, if the number 50 is given, the node bit amount is
 	 * adjusted to 6, which is the minimum number of bits to accommodate 50 nodes.
@@ -830,12 +830,12 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 * It builds a new factory.
 		 * <p>
 		 * The node identifier provided by the "tsidcreator.node" system property or the
-		 * "TSIDCREATOR_NODE" environment variable is embedded in the generated TSIDs in
+		 * "TSID_NODE" environment variable is embedded in the generated TSIDs in
 		 * order to avoid collisions. It is <b>highly recommended</b> defining that
 		 * property or variable. Otherwise the node identifier will be randomly chosen.
 		 * <p>
 		 * If a system property "tsidcreator.node.count" or environment variable
-		 * "TSIDCREATOR_NODE_COUNT" is defined, its value is used to adjust the node
+		 * "TSID_NODE_COUNT" is defined, its value is used to adjust the node
 		 * bits amount.
 		 */
 		public Factory() {
@@ -849,7 +849,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 * in order to avoid collisions.
 		 * <p>
 		 * If a system property "tsidcreator.node.count" or environment variable
-		 * "TSIDCREATOR_NODE_COUNT" is defined, its value is used to adjust the node
+		 * "TSID_NODE_COUNT" is defined, its value is used to adjust the node
 		 * bits amount.
 		 *
 		 * @param node the node identifier
@@ -1355,8 +1355,8 @@ public final class TSID implements Serializable, Comparable<TSID> {
 
 		static class Settings {
 
-			static final String NODE = "tsidcreator.node";
-			static final String NODE_COUNT = "tsidcreator.node.count";
+			static final String NODE = "tsid.node";
+			static final String NODE_COUNT = "tsid.node.count";
 
 			private Settings() {
 			}
@@ -1396,15 +1396,15 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		/**
 		 * Returns a new TSID.
 		 * <p>
-		 * The node ID is is set by defining the system property "tsidcreator.node" or
-		 * the environment variable "TSIDCREATOR_NODE". One of them <b>should</b> be
+		 * The node ID is is set by defining the system property "tsid.node" or
+		 * the environment variable "TSID_NODE". One of them <b>should</b> be
 		 * used to embed a machine ID in the generated TSID in order to avoid TSID
 		 * collisions. If that property or variable is not defined, the node ID is
 		 * chosen randomly.
 		 * <p>
 		 * The amount of nodes can be set by defining the system property
-		 * "tsidcreator.node.count" or the environment variable
-		 * "TSIDCREATOR_NODE_COUNT". That property or variable is used to adjust the
+		 * "tsid.node.count" or the environment variable
+		 * "TSID_NODE_COUNT". That property or variable is used to adjust the
 		 * minimum amount of bits to accommodate the node ID. If that property or
 		 * variable is not defined, the default amount of nodes is 1024, which takes 10
 		 * bits.
@@ -1437,8 +1437,8 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 * <p>
 		 * It can generate up to 16,384 TSIDs per millisecond per node.
 		 * <p>
-		 * The node ID is is set by defining the system property "tsidcreator.node" or
-		 * the environment variable "TSIDCREATOR_NODE". One of them <b>should</b> be
+		 * The node ID is is set by defining the system property "tsid.node" or
+		 * the environment variable "TSID_NODE". One of them <b>should</b> be
 		 * used to embed a machine ID in the generated TSID in order to avoid TSID
 		 * collisions. If that property or variable is not defined, the node ID is
 		 * chosen randomly.
@@ -1468,8 +1468,8 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 * <p>
 		 * It can generate up to 4,096 TSIDs per millisecond per node.
 		 * <p>
-		 * The node ID is is set by defining the system property "tsidcreator.node" or
-		 * the environment variable "TSIDCREATOR_NODE". One of them <b>should</b> be
+		 * The node ID is is set by defining the system property "tsid.node" or
+		 * the environment variable "TSID_NODE". One of them <b>should</b> be
 		 * used to embed a machine ID in the generated TSID in order to avoid TSID
 		 * collisions. If that property or variable is not defined, the node ID is
 		 * chosen randomly.
@@ -1498,8 +1498,8 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 * <p>
 		 * It can generate up to 1,024 TSIDs per millisecond per node.
 		 * <p>
-		 * The node ID is is set by defining the system property "tsidcreator.node" or
-		 * the environment variable "TSIDCREATOR_NODE". One of them <b>should</b> be
+		 * The node ID is is set by defining the system property "tsid.node" or
+		 * the environment variable "TSID_NODE". One of them <b>should</b> be
 		 * used to embed a machine ID in the generated TSID in order to avoid TSID
 		 * collisions. If that property or variable is not defined, the node ID is
 		 * chosen randomly.
