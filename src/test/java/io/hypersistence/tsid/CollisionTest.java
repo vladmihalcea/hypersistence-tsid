@@ -54,7 +54,7 @@ public class CollisionTest {
 		}
 		endLatch.await();
 
-		assertEquals("Collisions detected!", clashes.intValue(), 0);
+		assertEquals("Collisions detected!", 0, clashes.intValue());
 	}
 
 	@Test
@@ -91,11 +91,6 @@ public class CollisionTest {
 		}
 		endLatch.await();
 
-		//The max collision probability is 0.01%
-		BigDecimal maxCollisionProbability = BigDecimal.valueOf(0.01).divide(BigDecimal.valueOf(100));
-		int maxCollisions = (int) (iterationCount * maxCollisionProbability.doubleValue());
-		if(clashes.intValue() > maxCollisions) {
-			fail(String.format("Too many collisions: %s", clashes));
-		}
+		assertEquals("Collisions detected!", 0, clashes.intValue());
 	}
 }

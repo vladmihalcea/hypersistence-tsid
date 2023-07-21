@@ -991,7 +991,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 			} else {
 				// If the system clock has advanced as expected,
 				// simply reset the counter to a new random value.
-				this.counter = this.getRandomCounter();
+				this.counter = this.getRandomValue();
 			}
 
 			// save current time
@@ -1037,9 +1037,9 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		private int getRandomValue() {
 
 			int randomCounter = getRandomCounter();
-			int threadId = ((int) (Thread.currentThread().getId()) & this.counterMask);
+			int threadId = (((int) (Thread.currentThread().getId()) % 256) << (counterBits - 8));
 
-			return threadId | randomCounter;
+			return (threadId | (randomCounter >> (counterBits - 8)));
 		}
 
 		/**
