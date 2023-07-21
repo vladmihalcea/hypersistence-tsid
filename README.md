@@ -1,5 +1,5 @@
 
-TSID Creator
+TSID Generator
 ======================================================
 
 A Java library for generating Time-Sorted Unique Identifiers (TSID).
@@ -69,7 +69,7 @@ Add these lines to your `pom.xml`:
 <dependency>
     <groupId>io.hypersistence</groupId>
     <artifactId>tsid</artifactId>
-    <version>1.0.0</version>
+    <version>2.1.0</version>
 </dependency>
 ```
 
