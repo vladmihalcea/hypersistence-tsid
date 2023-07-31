@@ -4,7 +4,7 @@ TSID Generator
 
 A Java library for generating Time-Sorted Unique Identifiers (TSID).
 
-This version is a fork of the original[tsid-creator](https://github.com/f4b6a3/tsid-creator/) created by Fabio Lima.
+This version is a fork of the original [tsid-creator](https://github.com/f4b6a3/tsid-creator/) created by Fabio Lima.
 
 The reason why the project was forked was due to [this comment](https://github.com/f4b6a3/tsid-creator/issues/25) from the original author:
 
