@@ -25,13 +25,13 @@ In summary:
 *   String format is URL safe, is case insensitive, and has no hyphens;
 *   Shorter than UUID, ULID and KSUID.
 
-This project contains a [micro benchmark](https://github.com/f4b6a3/tsid-creator/tree/master/benchmark) and a good amount of [unit tests](https://github.com/f4b6a3/tsid-creator/tree/master/src/test/java/com/github/f4b6a3/tsid).
+This project contains a [micro benchmark](https://github.com/vladmihalcea/hypersistence-tsid/tree/master/benchmark) and a good amount of [unit tests](https://github.com/vladmihalcea/hypersistence-tsid/tree/master/src/test/java/io/hypersistence/tsid).
 
-The jar file can be downloaded directly from [maven.org](https://repo1.maven.org/maven2/com/github/f4b6a3/tsid-creator/).
+The jar file can be downloaded directly from [maven.org](https://repo1.maven.org/maven2/io/hypersistence/hypersistence-tsid/).
 
 Recommended readings:
 
-* [Javadocs](https://javadoc.io/doc/com.github.f4b6a3/tsid-creator)
+* [Javadocs](https://javadoc.io/doc/io.hypersistence/hypersistence-tsid)
 * [FAQ wiki page](https://github.com/f4b6a3/tsid-creator/wiki)
 * [How to not use TSID factories](https://fillumina.wordpress.com/2023/01/19/how-to-not-use-tsid-factories/)
 * [The best UUID type for a database Primary Key](https://vladmihalcea.com/uuid-database-primary-key/)
