@@ -68,8 +68,8 @@ Add these lines to your `pom.xml`:
 <!-- https://search.maven.org/artifact/io.hypersistence -->
 <dependency>
     <groupId>io.hypersistence</groupId>
-    <artifactId>tsid</artifactId>
-    <version>2.1.0</version>
+    <artifactId>hypersistence-tsid</artifactId>
+    <version>2.1.1</version>
 </dependency>
 ```
 
