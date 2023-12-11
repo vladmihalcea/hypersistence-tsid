@@ -35,6 +35,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.IntFunction;
 import java.util.function.IntSupplier;
+import java.util.function.Supplier;
 
 /**
  * A value object that represents a Time-Sorted Unique Identifier (TSID).
@@ -812,7 +813,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		private final int nodeMask;
 		private final int counterMask;
 
-		private final Clock clock;
+		private final Supplier<Instant> clock;
 		private final long customEpoch;
 
 		private final IRandom random;
@@ -883,7 +884,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 			this.node = builder.getNode() & nodeMask;
 
 			// finally, initialize internal state
-			this.lastTime = clock.millis();
+			this.lastTime = clock.get().toEpochMilli();
 			this.counter = getRandomValue();
 		}
 
@@ -967,6 +968,21 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		}
 
 		/**
+		 * Returns a TSID.
+		 *
+		 * @param timeMillis the time for the TSID, in milliseconds
+		 * @return a TSID.
+		 */
+		public TSID generate(long timeMillis) {
+
+			final long _time = adjustTime(timeMillis) << RANDOM_BITS;
+			final long _node = (long) this.node << this.counterBits;
+			final long _counter = (long) this.counter & this.counterMask;
+
+			return new TSID(_time | _node | _counter);
+		}
+
+		/**
 		 * Returns the current time.
 		 * <p>
 		 * If the current time is equal to the previous time, the counter is incremented
@@ -980,14 +996,31 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 */
 		private synchronized long getTime() {
 
-			long time = clock.millis();
+			long time = clock.get().toEpochMilli();
+			return adjustTime(time);
+		}
 
-			if (time <= this.lastTime) {
+		/**
+		 * Adjusts the current time.
+		 * <p>
+		 * If the time is equal to the previous time, the counter is incremented
+		 * by one. Otherwise the counter is reset to a random value.
+		 * <p>
+		 * The maximum number of increment operations depend on the counter bits. For
+		 * example, if the counter bits is 12, the maximum number of increment
+		 * operations is 2^12 = 4096.
+		 *
+		 * @param timeMillis the time to adjust, in milliseconds
+		 * @return the current time
+		 */
+		private synchronized long adjustTime(long timeMillis) {
+
+			if (timeMillis <= this.lastTime) {
 				this.counter++;
 				// Carry is 1 if an overflow occurs after ++.
 				int carry = this.counter >>> this.counterBits;
 				this.counter = this.counter & this.counterMask;
-				time = this.lastTime + carry; // increment time
+				timeMillis = this.lastTime + carry; // increment time
 			} else {
 				// If the system clock has advanced as expected,
 				// simply reset the counter to a new random value.
@@ -995,10 +1028,10 @@ public final class TSID implements Serializable, Comparable<TSID> {
 			}
 
 			// save current time
-			this.lastTime = time;
+			this.lastTime = timeMillis;
 
 			// adjust to the custom epoch
-			return time - this.customEpoch;
+			return timeMillis - this.customEpoch;
 		}
 
 		/**
@@ -1066,7 +1099,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 			private Integer nodeBits;
 			private Long customEpoch;
 			private IRandom random;
-			private Clock clock;
+			private Supplier<Instant> clock;
 
 			/**
 			 * Set the node identifier.
@@ -1168,6 +1201,16 @@ public final class TSID implements Serializable, Comparable<TSID> {
 			 * @return {@link Builder}
 			 */
 			public Builder withClock(Clock clock) {
+				return withClock(clock != null ? clock::instant : null);
+			}
+
+			/**
+			 * Set the clock to be used in tests.
+			 *
+			 * @param clock an {@link Instant} supplier
+			 * @return {@link Builder}
+			 */
+			public Builder withClock(Supplier<Instant> clock) {
 				this.clock = clock;
 				return this;
 			}
@@ -1253,7 +1296,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 			 *
 			 * @return a clock
 			 */
-			protected Clock getClock() {
+			protected Supplier<Instant> getClock() {
 				if (this.clock == null) {
 					this.withClock(Clock.systemUTC());
 				}
