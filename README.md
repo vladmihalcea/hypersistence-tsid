@@ -65,12 +65,13 @@ The TSID generator is [thread-safe](https://en.wikipedia.org/wiki/Thread_safety)
 Add these lines to your `pom.xml`:
 
 ```xml
-<!-- https://search.maven.org/artifact/io.hypersistence -->
+<!-- https://mvnrepository.com/artifact/io.hypersistence/hypersistence-tsid -->
 <dependency>
     <groupId>io.hypersistence</groupId>
-    <artifactId>tsid</artifactId>
+    <artifactId>hypersistence-tsid</artifactId>
     <version>2.1.0</version>
 </dependency>
+
 ```
 
 ### Modularity
