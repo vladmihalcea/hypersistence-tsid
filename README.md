@@ -4,7 +4,7 @@ TSID Generator
 
 A Java library for generating Time-Sorted Unique Identifiers (TSID).
 
-This version is a fork of the original[tsid-creator](https://github.com/f4b6a3/tsid-creator/) created by Fabio Lima.
+This version is a fork of the original [tsid-creator](https://github.com/f4b6a3/tsid-creator/) created by Fabio Lima.
 
 The reason why the project was forked was due to [this comment](https://github.com/f4b6a3/tsid-creator/issues/25) from the original author:
 
@@ -68,8 +68,8 @@ Add these lines to your `pom.xml`:
 <!-- https://search.maven.org/artifact/io.hypersistence -->
 <dependency>
     <groupId>io.hypersistence</groupId>
-    <artifactId>tsid</artifactId>
-    <version>2.1.0</version>
+    <artifactId>hypersistence-tsid</artifactId>
+    <version>2.1.1</version>
 </dependency>
 ```
 
