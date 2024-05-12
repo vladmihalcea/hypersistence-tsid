@@ -67,16 +67,16 @@ public class CollisionTest {
 		AtomicInteger clashes = new AtomicInteger();
 		CountDownLatch endLatch = new CountDownLatch(threadCount);
 		ConcurrentMap<Long, Integer> tsidMap = new ConcurrentHashMap<>();
+        final TSID.Factory  factory = TSID.Factory.builder()
+                                           .withNodeBits(nodeBits)
+                                           .withRandomFunction(TSID.Factory.THREAD_LOCAL_RANDOM_FUNCTION)
+                                           .build();
 
 		for (int i = 0; i < threadCount; i++) {
 
 			final int threadId = i;
 
 			new Thread(() -> {
-				TSID.Factory factory = TSID.Factory.builder()
-					.withNodeBits(nodeBits)
-					.withRandomFunction(TSID.Factory.THREAD_LOCAL_RANDOM_FUNCTION)
-					.build();
 
 				for (int j = 0; j < iterationCount; j++) {
 					Long tsid = factory.generate().toLong();
