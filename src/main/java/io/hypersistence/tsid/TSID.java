@@ -959,12 +959,22 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 */
 		public TSID generate() {
 
-			final long _time = getTime() << RANDOM_BITS;
+			final TimeAndCounter _tAndC = getTime();
+			final long _time = _tAndC.time << RANDOM_BITS;
 			final long _node = (long) this.node << this.counterBits;
-			final long _counter = (long) this.counter & this.counterMask;
-
-			return new TSID(_time | _node | _counter);
+			final long _counter = (long) _tAndC.counter & this.counterMask;
+            return new TSID(_time | _node | _counter);
 		}
+
+        private static class TimeAndCounter {
+            private final long time;
+            private final int counter;
+
+            private TimeAndCounter(long time, int counter) {
+                this.time = time;
+                this.counter = counter;
+            }
+        }
 
 		/**
 		 * Returns the current time.
@@ -978,10 +988,8 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 *
 		 * @return the current time
 		 */
-		private synchronized long getTime() {
-
+		private synchronized TimeAndCounter getTime() {
 			long time = clock.millis();
-
 			if (time <= this.lastTime) {
 				this.counter++;
 				// Carry is 1 if an overflow occurs after ++.
@@ -998,7 +1006,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 			this.lastTime = time;
 
 			// adjust to the custom epoch
-			return time - this.customEpoch;
+			return new TimeAndCounter(time - this.customEpoch, this.counter);
 		}
 
 		/**
