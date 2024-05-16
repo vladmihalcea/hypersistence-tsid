@@ -1,4 +1,4 @@
 @echo off
 
-mvn -P release release:perform
+mvn362 -P release release:perform
 goto:eof

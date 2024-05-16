@@ -1,4 +1,4 @@
 @echo off
 
-mvn -P release -DignoreSnapshots=true release:clean release:prepare
+mvn362 -P release -DignoreSnapshots=true release:clean release:prepare
 goto:eof
