@@ -33,6 +33,7 @@ import java.util.Random;
 import java.util.SplittableRandom;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.IntFunction;
 import java.util.function.IntSupplier;
 
@@ -791,6 +792,8 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 */
 	public static final class Factory {
 
+		private static final ReentrantLock LOCK = new ReentrantLock();
+
 		public static final Factory INSTANCE = new Factory();
 
 		public static final Factory INSTANCE_256 = newInstance256();
@@ -884,7 +887,12 @@ public final class TSID implements Serializable, Comparable<TSID> {
 
 			// finally, initialize internal state
 			this.lastTime = clock.millis();
-			this.counter = getRandomValue();
+			try {
+				LOCK.lock();
+				this.counter = getRandomValue();
+			} finally {
+				LOCK.unlock();
+			}
 		}
 
 		/**
@@ -958,11 +966,16 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 * @return a TSID.
 		 */
 		public TSID generate() {
-
-			final long _time = getTime() << RANDOM_BITS;
+			final long _time;
+			final long _counter;
+			try {
+				LOCK.lock();
+				_time = getTime() << RANDOM_BITS;
+				_counter = (long) this.counter & this.counterMask;
+			} finally {
+				LOCK.unlock();
+			}
 			final long _node = (long) this.node << this.counterBits;
-			final long _counter = (long) this.counter & this.counterMask;
-
 			return new TSID(_time | _node | _counter);
 		}
 
@@ -970,7 +983,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 * Returns the current time.
 		 * <p>
 		 * If the current time is equal to the previous time, the counter is incremented
-		 * by one. Otherwise the counter is reset to a random value.
+		 * by one. Otherwise, the counter is reset to a random value.
 		 * <p>
 		 * The maximum number of increment operations depend on the counter bits. For
 		 * example, if the counter bits is 12, the maximum number of increment
@@ -978,8 +991,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 *
 		 * @return the current time
 		 */
-		private synchronized long getTime() {
-
+		private long getTime() {
 			long time = clock.millis();
 
 			if (time <= this.lastTime) {
@@ -1009,10 +1021,8 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 *
 		 * @return a number
 		 */
-		private synchronized int getRandomCounter() {
-
+		private int getRandomCounter() {
 			if (random instanceof ByteRandom) {
-
 				final byte[] bytes = random.nextBytes(this.randomBytes);
 
 				switch (bytes.length) {
@@ -1035,7 +1045,6 @@ public final class TSID implements Serializable, Comparable<TSID> {
 		 * @return a number
 		 */
 		private int getRandomValue() {
-
 			int randomCounter = getRandomCounter();
 			int threadId = (((int) (Thread.currentThread().getId()) % 256) << (counterBits - 8));
 

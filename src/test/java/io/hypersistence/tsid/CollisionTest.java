@@ -58,7 +58,7 @@ public class CollisionTest {
 	}
 
 	@Test
-	public void testCollisionMultipleThreadsPerNode() throws InterruptedException {
+	public void testCollision() throws InterruptedException {
 
 		int nodeBits = 1;
 		int threadCount = 16;
@@ -68,16 +68,15 @@ public class CollisionTest {
 		CountDownLatch endLatch = new CountDownLatch(threadCount);
 		ConcurrentMap<Long, Integer> tsidMap = new ConcurrentHashMap<>();
 
+		TSID.Factory factory = TSID.Factory.builder()
+			.withNodeBits(nodeBits)
+			.build();
+
 		for (int i = 0; i < threadCount; i++) {
 
 			final int threadId = i;
 
 			new Thread(() -> {
-				TSID.Factory factory = TSID.Factory.builder()
-					.withNodeBits(nodeBits)
-					.withRandomFunction(TSID.Factory.THREAD_LOCAL_RANDOM_FUNCTION)
-					.build();
-
 				for (int j = 0; j < iterationCount; j++) {
 					Long tsid = factory.generate().toLong();
 					if (Objects.nonNull(tsidMap.put(tsid, (threadId * iterationCount) + j))) {
