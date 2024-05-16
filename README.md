@@ -4,7 +4,7 @@ TSID Generator
 
 A Java library for generating Time-Sorted Unique Identifiers (TSID).
 
-This version is a fork of the original[tsid-creator](https://github.com/f4b6a3/tsid-creator/) created by Fabio Lima.
+This version is a fork of the original [tsid-creator](https://github.com/f4b6a3/tsid-creator/) created by Fabio Lima.
 
 The reason why the project was forked was due to [this comment](https://github.com/f4b6a3/tsid-creator/issues/25) from the original author:
 
@@ -19,23 +19,16 @@ It brings together ideas from [Twitter's Snowflake](https://github.com/twitter-a
 In summary:
 
 *   Sorted by generation time;
-*   Can be stored as an integer of 64 bits;
-*   Can be stored as a string of 13 chars;
+*   It can be stored as an integer of 64 bits;
+*   It can be stored as a string of 13 chars;
 *   String format is encoded to [Crockford's base32](https://www.crockford.com/base32.html);
 *   String format is URL safe, is case insensitive, and has no hyphens;
 *   Shorter than UUID, ULID and KSUID.
 
-This project contains a [micro benchmark](https://github.com/f4b6a3/tsid-creator/tree/master/benchmark) and a good amount of [unit tests](https://github.com/f4b6a3/tsid-creator/tree/master/src/test/java/com/github/f4b6a3/tsid).
-
-The jar file can be downloaded directly from [maven.org](https://repo1.maven.org/maven2/com/github/f4b6a3/tsid-creator/).
-
 Recommended readings:
 
-* [Javadocs](https://javadoc.io/doc/com.github.f4b6a3/tsid-creator)
-* [FAQ wiki page](https://github.com/f4b6a3/tsid-creator/wiki)
-* [How to not use TSID factories](https://fillumina.wordpress.com/2023/01/19/how-to-not-use-tsid-factories/)
 * [The best UUID type for a database Primary Key](https://vladmihalcea.com/uuid-database-primary-key/)
-* [The primary key dilemma: ID vs UUID and some practical solutions](https://fillumina.wordpress.com/2023/02/06/the-primary-key-dilemma-id-vs-uuid-and-some-practical-solutions/)
+* [The best way to generate a TSID entity identifier with JPA and Hibernate](https://vladmihalcea.com/tsid-identifier-jpa-hibernate/)
 
 Usage
 ------------------------------------------------------
@@ -65,11 +58,11 @@ The TSID generator is [thread-safe](https://en.wikipedia.org/wiki/Thread_safety)
 Add these lines to your `pom.xml`:
 
 ```xml
-<!-- https://search.maven.org/artifact/io.hypersistence -->
+<!-- https://central.sonatype.com/artifact/io.hypersistence/hypersistence-tsid -->
 <dependency>
     <groupId>io.hypersistence</groupId>
-    <artifactId>tsid</artifactId>
-    <version>2.1.0</version>
+    <artifactId>hypersistence-tsid</artifactId>
+    <version>2.1.2</version>
 </dependency>
 ```
 
