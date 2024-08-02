@@ -1202,7 +1202,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 				}
 
 				if (node < 0 || node > max) {
-					throw new IllegalArgumentException(String.format("Node ID out of range [0, %s]: %s", max, node));
+					node = Math.floorMod(node, max);
 				}
 
 				return this.node;

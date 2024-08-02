@@ -463,6 +463,37 @@ public class TsidTest {
 		}
 	}
 
+	@Test
+	public void testWithNodeBitsSetFromProperty() {
+		final int randomBits = 22;
+		// test all allowed values of node bits
+		for (int i = 20; i >= 0; i--) {
+			final int nodeBits = i;
+			final int counterBits = randomBits - nodeBits;
+			final int node = (1 << nodeBits) - 1; // max: 2^nodeBits - 1
+			String oldNodeSetting = System.getProperty(TSID.Factory.Settings.NODE);
+			String oldNodeCountSetting = System.getProperty(TSID.Factory.Settings.NODE_COUNT);
+			try {
+				System.setProperty(TSID.Factory.Settings.NODE, String.valueOf(node));
+				System.setProperty(TSID.Factory.Settings.NODE_COUNT, String.valueOf(1 << nodeBits));
+				TSID tsid = TSID.Factory.builder().withNodeBits(nodeBits).withNode(node).build().generate();
+				int actual = (int) tsid.getRandom() >>> counterBits;
+				assertEquals(node, actual);
+			} finally {
+				if (oldNodeSetting != null) {
+					System.setProperty(TSID.Factory.Settings.NODE, oldNodeSetting);
+				} else {
+					System.getProperties().remove(TSID.Factory.Settings.NODE);
+				}
+				if (oldNodeCountSetting != null) {
+					System.setProperty(TSID.Factory.Settings.NODE_COUNT, oldNodeCountSetting);
+				} else {
+					System.getProperties().remove(TSID.Factory.Settings.NODE_COUNT);
+				}
+			}
+		}
+	}
+
 	public long fromString(String tsid) {
 
 		String number = tsid.substring(0, 10);
