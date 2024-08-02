@@ -260,7 +260,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * Converts the TSID into a number.
 	 * <p>
 	 * This method simply unwraps the internal value.
-	 * 
+	 *
 	 * @return an number.
 	 */
 	public long toLong() {
@@ -269,7 +269,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 
 	/**
 	 * Converts the TSID into a byte array.
-	 * 
+	 *
 	 * @return an byte array.
 	 */
 	public byte[] toBytes() {
@@ -304,7 +304,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * collisions if more than one process is generating TSIDs using this method. In
 	 * that case, {@link Factory#getTsid()} <b>should</b> be used in conjunction
 	 * with that property or variable.
-	 * 
+	 *
 	 * @return a TSID
 	 * @see {@link AtomicInteger}
 	 * @since 5.1.0
@@ -323,7 +323,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * <p>
 	 * For lower case string, use the shorthand {@code Tsid.toLowerCase()} instead
 	 * of {@code Tsid.toString().toLowerCase()}.
-	 * 
+	 *
 	 * @return a TSID string
 	 * @see <a href="https://www.crockford.com/base32.html">Crockford's Base 32</a>
 	 */
@@ -339,7 +339,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * Crockford's base 32 alphabet.
 	 * <p>
 	 * It is faster shorthand for {@code Tsid.toString().toLowerCase()}.
-	 * 
+	 *
 	 * @return a string
 	 * @see <a href="https://www.crockford.com/base32.html">Crockford's Base 32</a>
 	 */
@@ -351,7 +351,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * Returns the instant of creation.
 	 * <p>
 	 * The instant of creation is extracted from the time component.
-	 * 
+	 *
 	 * @return {@link Instant}
 	 */
 	public Instant getInstant() {
@@ -362,7 +362,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * Returns the instant of creation.
 	 * <p>
 	 * The instant of creation is extracted from the time component.
-	 * 
+	 *
 	 * @param customEpoch the custom epoch instant
 	 * @return {@link Instant}
 	 */
@@ -374,7 +374,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * Returns the time of creation in milliseconds since 1970-01-01.
 	 * <p>
 	 * The time of creation is extracted from the time component.
-	 * 
+	 *
 	 * @return the number of milliseconds since 1970-01-01
 	 */
 	public long getUnixMilliseconds() {
@@ -385,7 +385,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * Returns the time of creation in milliseconds since 1970-01-01.
 	 * <p>
 	 * The time of creation is extracted from the time component.
-	 * 
+	 *
 	 * @param customEpoch the custom epoch in milliseconds since 1970-01-01
 	 * @return the number of milliseconds since 1970-01-01
 	 */
@@ -397,7 +397,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * Returns the time component as a number.
 	 * <p>
 	 * The time component is a number between 0 and 2^42-1.
-	 * 
+	 *
 	 * @return a number of milliseconds.
 	 */
 	long getTime() {
@@ -408,7 +408,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * Returns the random component as a number.
 	 * <p>
 	 * The time component is a number between 0 and 2^22-1.
-	 * 
+	 *
 	 * @return a number
 	 */
 	long getRandom() {
@@ -422,7 +422,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * from Crockford's base 32 alphabet.
 	 * <p>
 	 * The first character of the input string must be between 0 and F.
-	 * 
+	 *
 	 * @param string a string
 	 * @return true if valid
 	 */
@@ -456,7 +456,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * <p>
 	 * The first of two TSIDs is greater than the second if the most significant
 	 * byte in which they differ is greater for the first TSID.
-	 * 
+	 *
 	 * @param that a TSID to be compared with
 	 * @return -1, 0 or 1 as {@code this} is less than, equal to, or greater than
 	 *         {@code that}
@@ -489,7 +489,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * </ul>
 	 * <p>
 	 * The output string is left padded with zeros.
-	 * 
+	 *
 	 * @param base a radix between 2 and 62
 	 * @return a base-n encoded string
 	 * @since 5.2.0
@@ -512,7 +512,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * </ul>
 	 * <p>
 	 * The input string is left padded with zeros.
-	 * 
+	 *
 	 * @param string a base-n encoded string
 	 * @param base   a radix between 2 and 62
 	 * @return a TSID
@@ -560,7 +560,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * </ul>
 	 * <p>
 	 * The opposite operation can be done by {@link TSID#unformat(String, String)}.
-	 * 
+	 *
 	 * @param format a custom format
 	 * @return a string using a custom format
 	 * @since 5.2.0
@@ -616,7 +616,7 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	 * </ul>
 	 * </li>
 	 * </ul>
-	 * 
+	 *
 	 * @param formatted a string using a custom format
 	 * @param format    a custom format
 	 * @return a TSID
@@ -685,12 +685,12 @@ public final class TSID implements Serializable, Comparable<TSID> {
 
 	/**
 	 * Checks if the string is a valid TSID.
-	 * 
+	 *
 	 * A valid TSID string is a sequence of 13 characters from Crockford's base 32
 	 * alphabet.
-	 * 
+	 *
 	 * The first character of the input string must be between 0 and F.
-	 * 
+	 *
 	 * @param chars a char array
 	 * @return boolean true if valid
 	 */
@@ -793,14 +793,6 @@ public final class TSID implements Serializable, Comparable<TSID> {
 	public static final class Factory {
 
 		private static final ReentrantLock LOCK = new ReentrantLock();
-
-		public static final Factory INSTANCE = new Factory();
-
-		public static final Factory INSTANCE_256 = newInstance256();
-
-		public static final Factory INSTANCE_1024 = newInstance1024();
-
-		public static final Factory INSTANCE_4096 = newInstance4096();
 
 		public static final IntSupplier THREAD_LOCAL_RANDOM_FUNCTION = () -> ThreadLocalRandom.current().nextInt();
 
@@ -1413,134 +1405,6 @@ public final class TSID implements Serializable, Comparable<TSID> {
 
 				return null;
 			}
-		}
-
-		/**
-		 * Returns a new TSID.
-		 * <p>
-		 * The node ID is is set by defining the system property "tsid.node" or
-		 * the environment variable "TSID_NODE". One of them <b>should</b> be
-		 * used to embed a machine ID in the generated TSID in order to avoid TSID
-		 * collisions. If that property or variable is not defined, the node ID is
-		 * chosen randomly.
-		 * <p>
-		 * The amount of nodes can be set by defining the system property
-		 * "tsid.node.count" or the environment variable
-		 * "TSID_NODE_COUNT". That property or variable is used to adjust the
-		 * minimum amount of bits to accommodate the node ID. If that property or
-		 * variable is not defined, the default amount of nodes is 1024, which takes 10
-		 * bits.
-		 * <p>
-		 * The amount of bits needed to accommodate the node ID is calculated by this
-		 * pseudo-code formula: {@code node_bits = ceil(log(node_count)/log(2))}.
-		 * <p>
-		 * Random component settings:
-		 * <ul>
-		 * <li>Node bits: node_bits
-		 * <li>Counter bits: 22-node_bits
-		 * <li>Maximum node: 2^node_bits
-		 * <li>Maximum counter: 2^(22-node_bits)
-		 * </ul>
-		 * <p>
-		 * The time component can be 1 ms or more ahead of the system time when
-		 * necessary to maintain monotonicity and generation speed.
-		 *
-		 * @return a TSID
-		 * @since 5.1.0
-		 */
-		public static TSID getTsid() {
-			return INSTANCE.generate();
-		}
-
-		/**
-		 * Returns a new TSID.
-		 * <p>
-		 * It supports up to 256 nodes.
-		 * <p>
-		 * It can generate up to 16,384 TSIDs per millisecond per node.
-		 * <p>
-		 * The node ID is is set by defining the system property "tsid.node" or
-		 * the environment variable "TSID_NODE". One of them <b>should</b> be
-		 * used to embed a machine ID in the generated TSID in order to avoid TSID
-		 * collisions. If that property or variable is not defined, the node ID is
-		 * chosen randomly.
-		 *
-		 * <p>
-		 * Random component settings:
-		 * <ul>
-		 * <li>Node bits: 8
-		 * <li>Counter bits: 14
-		 * <li>Maximum node: 256 (2^8)
-		 * <li>Maximum counter: 16,384 (2^14)
-		 * </ul>
-		 * <p>
-		 * The time component can be 1 ms or more ahead of the system time when
-		 * necessary to maintain monotonicity and generation speed.
-		 *
-		 * @return a TSID
-		 */
-		public static TSID getTsid256() {
-			return INSTANCE_256.generate();
-		}
-
-		/**
-		 * Returns a new TSID.
-		 * <p>
-		 * It supports up to 1,024 nodes.
-		 * <p>
-		 * It can generate up to 4,096 TSIDs per millisecond per node.
-		 * <p>
-		 * The node ID is is set by defining the system property "tsid.node" or
-		 * the environment variable "TSID_NODE". One of them <b>should</b> be
-		 * used to embed a machine ID in the generated TSID in order to avoid TSID
-		 * collisions. If that property or variable is not defined, the node ID is
-		 * chosen randomly.
-		 * <p>
-		 * Random component settings:
-		 * <ul>
-		 * <li>Node bits: 10
-		 * <li>Counter bits: 12
-		 * <li>Maximum node: 1,024 (2^10)
-		 * <li>Maximum counter: 4,096 (2^12)
-		 * </ul>
-		 * <p>
-		 * The time component can be 1 ms or more ahead of the system time when
-		 * necessary to maintain monotonicity and generation speed.
-		 *
-		 * @return a TSID
-		 */
-		public static TSID getTsid1024() {
-			return INSTANCE_1024.generate();
-		}
-
-		/**
-		 * Returns a new TSID.
-		 * <p>
-		 * It supports up to 4,096 nodes.
-		 * <p>
-		 * It can generate up to 1,024 TSIDs per millisecond per node.
-		 * <p>
-		 * The node ID is is set by defining the system property "tsid.node" or
-		 * the environment variable "TSID_NODE". One of them <b>should</b> be
-		 * used to embed a machine ID in the generated TSID in order to avoid TSID
-		 * collisions. If that property or variable is not defined, the node ID is
-		 * chosen randomly.
-		 * <p>
-		 * Random component settings:
-		 * <ul>
-		 * <li>Node bits: 12
-		 * <li>Counter bits: 10
-		 * <li>Maximum node: 4,096 (2^12)
-		 * <li>Maximum counter: 1,024 (2^10)
-		 * </ul>
-		 * <p>
-		 * The time component can be 1 ms or more ahead of the system time when
-		 * necessary to maintain monotonicity and generation speed.
-		 *
-		 * @return a TSID number
-		 */
-		public static TSID getTsid4096() {
-			return INSTANCE_4096.generate();
 		}
 	}
 }

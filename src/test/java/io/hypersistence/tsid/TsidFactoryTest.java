@@ -45,7 +45,7 @@ public class TsidFactoryTest {
 	public void testGetInstant() {
 
 		Instant start = Instant.now();
-		TSID tsid = TSID.Factory.getTsid();
+		TSID tsid = TSID.Factory.newInstance1024().generate();
 		Instant middle = tsid.getInstant();
 		Instant end = Instant.now();
 
@@ -209,6 +209,22 @@ public class TsidFactoryTest {
 			assertEquals(node, actual);
 		}
 	}
+
+@Test
+public void testWithNodeBitsSetFromProperty() {
+	final int randomBits = 22;
+	// test all allowed values of node bits
+	for (int i = 20; i >= 0; i--) {
+		final int nodeBits = i;
+		final int counterBits = randomBits - nodeBits;
+		final int node = (1 << nodeBits) - 1; // max: 2^nodeBits - 1
+		System.setProperty(NODE, String.valueOf(node));
+		System.setProperty(NODE_COUNT, String.valueOf(1 << nodeBits));
+		TSID tsid = TSID.Factory.builder().withNodeBits(nodeBits).withNode(node).build().generate();
+		int actual = (int) tsid.getRandom() >>> counterBits;
+		assertEquals(node, actual);
+	}
+}
 
 	@Test
 	public void testWithNodeCount() {
