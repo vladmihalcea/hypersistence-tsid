@@ -1,3 +1,6 @@
+[![License](https://img.shields.io/github/license/vladmihalcea/hypersistence-tsid.svg)](https://raw.githubusercontent.com/vladmihalcea/hypersistence-tsid/master/LICENSE)
+[![Maven Central](https://img.shields.io/maven-central/v/io.hypersistence/hypersistence-tsid.svg)](https://central.sonatype.com/artifact/io.hypersistence/hypersistence-tsid)
+[![JavaDoc](http://javadoc.io/badge/io.hypersistence/hypersistence-tsid.svg)](http://www.javadoc.io/doc/io.hypersistence/hypersistence-tsid)
 
 TSID Generator
 ======================================================
