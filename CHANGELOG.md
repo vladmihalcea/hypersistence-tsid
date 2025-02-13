@@ -1,3 +1,8 @@
+Version 2.1.4 - February 13, 2025
+================================================================================
+
+Enable during compilation the method parameter metadata for Java Reflection #23
+
 Version 2.1.3 - November 20, 2024
 ================================================================================
 
