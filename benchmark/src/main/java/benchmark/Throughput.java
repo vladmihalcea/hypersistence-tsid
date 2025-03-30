@@ -15,7 +15,7 @@ import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Threads;
 import org.openjdk.jmh.annotations.Warmup;
 
-import io.hypersistence.tsid.Tsid;
+import io.hypersistence.tsid.TSID;
 
 @Fork(1)
 @Threads(4)
@@ -37,42 +37,42 @@ public class Throughput {
 	}
 
 	@Benchmark
-	public Tsid Tsid_fast() {
-		return Tsid.fast();
+	public TSID TSID_fast() {
+		return TSID.fast();
 	}
 
 	@Benchmark
-	public String Tsid_fast_toString() {
-		return Tsid.fast().toString();
+	public String TSID_fast_toString() {
+		return TSID.fast().toString();
 	}
 
 	@Benchmark
-	public Tsid TsidCreator_getTsid256() {
-		return TsidCreator.getTsid256();
+	public TSID TSID_Factory_getTsid256() {
+		return TSID.Factory.getTsid256();
 	}
 
 	@Benchmark
-	public String TsidCreator_getTsid256_toString() {
-		return TsidCreator.getTsid256().toString();
+	public String TSID_Factory_getTsid256_toString() {
+		return TSID.Factory.getTsid256().toString();
 	}
 
 	@Benchmark
-	public Tsid TsidCreator_getTsid1024() {
-		return TsidCreator.getTsid1024();
+	public TSID TSID_Factory_getTsid1024() {
+		return TSID.Factory.getTsid1024();
 	}
 
 	@Benchmark
-	public String TsidCreator_getTsid1024_toString() {
-		return TsidCreator.getTsid1024().toString();
+	public String TSID_Factory_getTsid1024_toString() {
+		return TSID.Factory.getTsid1024().toString();
 	}
 
 	@Benchmark
-	public Tsid TsidCreator_getTsid4096() {
-		return TsidCreator.getTsid4096();
+	public TSID TSID_Factory_getTsid4096() {
+		return TSID.Factory.getTsid4096();
 	}
 
 	@Benchmark
-	public String TsidCreator_getTsid4096_toString() {
-		return TsidCreator.getTsid4096().toString();
+	public String TSID_Factory_getTsid4096_toString() {
+		return TSID.Factory.getTsid4096().toString();
 	}
 }

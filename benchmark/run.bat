@@ -8,7 +8,7 @@ REM compile the parent project
 CALL mvn clean install -DskipTests
 
 REM create a copy with the expected name
-XCOPY /Y target\tsid-creator-*-SNAPSHOT.jar target\tsid-creator-0.0.1-BENCHMARK.jar*
+XCOPY /Y target\hypersistence-tsid-*-SNAPSHOT.jar target\hypersistence-tsid-0.0.1-BENCHMARK.jar*
 
 REM go to the benchmark folder
 CD benchmark

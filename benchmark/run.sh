@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ARTIFACT_ID=tsid-creator
+ARTIFACT_ID=hypersistence-tsid
 
 # find the script folder
 SCRIPT_DIR=$(dirname "$0")

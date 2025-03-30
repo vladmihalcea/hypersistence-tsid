@@ -33,7 +33,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.f4b6a3</groupId>
+    <groupId>io.hypersistence</groupId>
     <artifactId>benchmark</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -47,8 +47,8 @@ THE POSSIBILITY OF SUCH DAMAGE.
 
     <properties>
     
-	    <dependency.groupid>com.github.f4b6a3</dependency.groupid>
-	    <dependency.artifactid>tsid-creator</dependency.artifactid>
+	    <dependency.groupid>io.hypersistence</dependency.groupid>
+	    <dependency.artifactid>hypersistence-tsid</dependency.artifactid>
 	    <dependency.version>0.0.1-BENCHMARK</dependency.version>
 		<dependency.path>${project.basedir}/../target/${dependency.artifactid}-${dependency.version}.jar</dependency.path>
 
@@ -99,6 +99,13 @@ THE POSSIBILITY OF SUCH DAMAGE.
                     <compilerVersion>${javac.target}</compilerVersion>
                     <source>${javac.target}</source>
                     <target>${javac.target}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.openjdk.jmh</groupId>
+                            <artifactId>jmh-generator-annprocess</artifactId>
+                            <version>${jmh.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
 			<plugin>
