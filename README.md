@@ -287,7 +287,7 @@ package com.example;
 
 public class KeyGenerator {
     public static String next() {
-        return TSID.Factory.TSID.Factory.getTsid().toString();
+        return TSID.Factory.getTsid().toString();
     }
 }
 ```
